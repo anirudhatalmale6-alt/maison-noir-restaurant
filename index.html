@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Maison Noir | Modern European tasting menus in Lisbon</title>
+  <meta name="description" content="A candlelit twenty-eight seat dining room in the old quarter of Lisbon. Nine-course seasonal tasting menu, open kitchen, wine list built on small growers.">
+  <meta name="theme-color" content="#08080a">
+  <link rel="canonical" href="https://example.com/">
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Maison Noir">
+  <meta property="og:title" content="Maison Noir | Modern European tasting menus in Lisbon">
+  <meta property="og:description" content="A candlelit twenty-eight seat dining room in the old quarter of Lisbon. Nine-course seasonal tasting menu, open kitchen, wine list built on small growers.">
+  <meta property="og:url" content="https://example.com/">
+  <meta property="og:image" content="https://example.com/img/og-card.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!--
+    The two font files the first screen actually uses are preloaded. The
+    latin-ext pair is left to load normally: preloading a file most visitors
+    never need is a classic way to make a Lighthouse score worse, not better.
+  -->
+  <link rel="preload" href="fonts/bodoni-moda-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!--
+    Preload the hero image at the same widths the markup offers, so the
+    browser starts fetching it while the stylesheet is still in flight rather
+    than after it. This is the page's Largest Contentful Paint element, so it
+    is the one request worth jumping the queue.
+
+    WebP only: every browser that understands `imagesrcset` also understands
+    WebP, so there is no case where this preloads a file that then goes unused.
+  -->
+  <link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesizes="100vw"
+        imagesrcset="img/hero-1-760.webp 760w, img/hero-1-1200.webp 1200w, img/hero-1.webp 1920w">
+
+  <link rel="stylesheet" href="css/main.css">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2308080a'/><text x='16' y='23' font-family='Georgia,serif' font-size='20' fill='%23c79a46' text-anchor='middle'>N</text></svg>">
+
+  <!--
+    Only add the `js` class in browsers that support ES modules - those are
+    exactly the browsers that will run main.js. Anywhere else the reveal
+    animations never arm, so the content is visible from the first paint.
+  -->
+  <script>
+    if ('noModule' in HTMLScriptElement.prototype) {
+      document.documentElement.classList.add('js');
+    }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Maison Noir",
+    "description": "A candlelit twenty-eight seat dining room serving a seasonal modern European tasting menu in the heart of the old quarter.",
+    "url": "https://example.com",
+    "image": "https://example.com/img/og-card.jpg",
+    "servesCuisine": "Modern European",
+    "priceRange": "€€€",
+    "telephone": "+351 21 045 9920",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "17 Rue des Lanternes",
+      "addressLocality": "Lisbon",
+      "postalCode": "1100-062",
+      "addressCountry": "PT"
+    },
+    "openingHours": ["Tu-Th 18:00-23:00", "Fr-Sa 18:00-01:00", "Su 12:30-16:00"],
+    "acceptsReservations": "True",
+    "hasMenu": "https://example.com/menu.html"
+  }
+  </script>
+
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="header" data-header>
+    <div class="header__inner">
+      <!--
+        No aria-label here on purpose. An override that does not contain the
+        visible words ("Maison Noir / Est. 2014") breaks voice control: the
+        user says what they can see and nothing matches.
+      -->
+      <a class="brand" href="index.html">
+        <span class="brand__name">Maison Noir</span>
+        <span class="brand__tag">Est. 2014</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        
+        <a class="nav__link is-active" href="index.html" aria-current="page">Home</a>
+        
+        <a class="nav__link" href="menu.html">Menu</a>
+        
+        <a class="nav__link" href="about.html">About</a>
+        
+        <a class="nav__link" href="contact.html">Contact</a>
+        
+      </nav>
+
+      <div class="header__actions">
+        <a class="header__phone" href="tel:+351210459920">+351 21 045 9920</a>
+        <a class="btn header__cta" href="contact.html">Reserve</a>
+        <button class="burger" type="button" data-burger aria-expanded="false" aria-controls="drawer" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile drawer. Hidden from assistive tech until it opens. -->
+  <div class="drawer" id="drawer" data-drawer role="dialog" aria-modal="true" aria-label="Site menu">
+    <div class="drawer__top">
+      <span class="brand__name">Maison Noir</span>
+      <button class="drawer__close" type="button" data-drawer-close aria-label="Close menu">&times;</button>
+    </div>
+
+    <nav class="drawer__nav" aria-label="Mobile">
+      
+      <a class="drawer__link is-active" href="index.html">
+        <span class="drawer__index">01</span>
+        <span>Home</span>
+      </a>
+      
+      <a class="drawer__link" href="menu.html">
+        <span class="drawer__index">02</span>
+        <span>Menu</span>
+      </a>
+      
+      <a class="drawer__link" href="about.html">
+        <span class="drawer__index">03</span>
+        <span>About</span>
+      </a>
+      
+      <a class="drawer__link" href="contact.html">
+        <span class="drawer__index">04</span>
+        <span>Contact</span>
+      </a>
+      
+    </nav>
+
+    <div class="drawer__foot">
+      <a href="tel:+351210459920">+351 21 045 9920</a>
+      <span>17 Rue des Lanternes, Old Quarter, Lisbon 1100-062</span>
+      <a class="btn btn--block" href="contact.html">Reserve a table</a>
+    </div>
+  </div>
+
+
+<main id="main">
+
+  <!-- ===================================================================
+       Hero slideshow
+       Slides come from data/hero.json. Add, remove or reorder entries
+       there and the markup below regenerates on the next build.
+       =================================================================== -->
+  <section class="hero" data-slideshow data-interval="6500" aria-roledescription="carousel" aria-label="Maison Noir">
+    <div class="hero__slides">
+      
+      <article class="hero__slide is-active" data-slide
+               aria-roledescription="slide" aria-label="1 of 04"
+               aria-hidden="false">
+        <div class="hero__media">
+          <!--
+            Three widths per format. The hero is always full-bleed, so the
+            `sizes` hint is simply 100vw and the browser picks the step that
+            matches the device, rather than pulling a 1920px file onto a phone.
+
+            Only the first slide is eager with a high fetch priority - it is
+            the Largest Contentful Paint element. The rest stay lazy until the
+            slideshow promotes them after load.
+          -->
+          <picture>
+            <source type="image/webp" sizes="100vw"
+                    srcset="img/hero-1-760.webp 760w, img/hero-1-1200.webp 1200w, img/hero-1.webp 1920w">
+            <source type="image/jpeg" sizes="100vw"
+                    srcset="img/hero-1-760.jpg 760w, img/hero-1-1200.jpg 1200w, img/hero-1.jpg 1920w">
+            <img src="img/hero-1.jpg" alt="Seared wagyu fillet with charred leek and bone marrow jus on a dark ceramic plate" width="1920" height="1080"
+                 fetchpriority="high" decoding="sync">
+          </picture>
+        </div>
+        <div class="hero__scrim"></div>
+
+        <div class="hero__body">
+          <div class="hero__copy">
+            <p class="eyebrow hero__eyebrow">The tasting menu</p>
+            <h1 class="hero__title">Nine courses,<br>one long evening</h1>
+            <p class="hero__text">Ingredients picked the same morning, cooked over fire, plated in front of you at the pass.</p>
+            <div class="hero__actions">
+              <a class="btn" href="contact.html">Reserve a table</a>
+              <a class="btn btn--ghost" href="menu.html">See the menu</a>
+            </div>
+          </div>
+        </div>
+      </article>
+      
+      <article class="hero__slide" data-slide
+               aria-roledescription="slide" aria-label="2 of 04"
+               aria-hidden="true">
+        <div class="hero__media">
+          <!--
+            Three widths per format. The hero is always full-bleed, so the
+            `sizes` hint is simply 100vw and the browser picks the step that
+            matches the device, rather than pulling a 1920px file onto a phone.
+
+            Only the first slide is eager with a high fetch priority - it is
+            the Largest Contentful Paint element. The rest stay lazy until the
+            slideshow promotes them after load.
+          -->
+          <picture>
+            <source type="image/webp" sizes="100vw"
+                    srcset="img/hero-2-760.webp 760w, img/hero-2-1200.webp 1200w, img/hero-2.webp 1920w">
+            <source type="image/jpeg" sizes="100vw"
+                    srcset="img/hero-2-760.jpg 760w, img/hero-2-1200.jpg 1200w, img/hero-2.jpg 1920w">
+            <img src="img/hero-2.jpg" alt="Candlelit dining room with velvet banquettes, brass pendant lights and linen tables" width="1920" height="1080"
+                 loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <div class="hero__scrim"></div>
+
+        <div class="hero__body">
+          <div class="hero__copy">
+            <p class="eyebrow hero__eyebrow">The room</p>
+            <h1 class="hero__title">Twenty-eight seats,<br>lit by candle</h1>
+            <p class="hero__text">Velvet banquettes, brass light and linen. A room built for the kind of dinner that runs late.</p>
+            <div class="hero__actions">
+              <a class="btn" href="contact.html">Reserve a table</a>
+              <a class="btn btn--ghost" href="about.html">Our story</a>
+            </div>
+          </div>
+        </div>
+      </article>
+      
+      <article class="hero__slide" data-slide
+               aria-roledescription="slide" aria-label="3 of 04"
+               aria-hidden="true">
+        <div class="hero__media">
+          <!--
+            Three widths per format. The hero is always full-bleed, so the
+            `sizes` hint is simply 100vw and the browser picks the step that
+            matches the device, rather than pulling a 1920px file onto a phone.
+
+            Only the first slide is eager with a high fetch priority - it is
+            the Largest Contentful Paint element. The rest stay lazy until the
+            slideshow promotes them after load.
+          -->
+          <picture>
+            <source type="image/webp" sizes="100vw"
+                    srcset="img/hero-3-760.webp 760w, img/hero-3-1200.webp 1200w, img/hero-3.webp 1920w">
+            <source type="image/jpeg" sizes="100vw"
+                    srcset="img/hero-3-760.jpg 760w, img/hero-3-1200.jpg 1200w, img/hero-3.jpg 1920w">
+            <img src="img/hero-3.jpg" alt="Flames rising from a charcoal grill in a dark kitchen" width="1920" height="1080"
+                 loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <div class="hero__scrim"></div>
+
+        <div class="hero__body">
+          <div class="hero__copy">
+            <p class="eyebrow hero__eyebrow">Over fire</p>
+            <h1 class="hero__title">Almost everything<br>sees the coals</h1>
+            <p class="hero__text">The grill is the centre of this kitchen. Sit at the counter and you will feel the heat from it.</p>
+            <div class="hero__actions">
+              <a class="btn" href="contact.html">Book the counter</a>
+              <a class="btn btn--ghost" href="menu.html">See the menu</a>
+            </div>
+          </div>
+        </div>
+      </article>
+      
+      <article class="hero__slide" data-slide
+               aria-roledescription="slide" aria-label="4 of 04"
+               aria-hidden="true">
+        <div class="hero__media">
+          <!--
+            Three widths per format. The hero is always full-bleed, so the
+            `sizes` hint is simply 100vw and the browser picks the step that
+            matches the device, rather than pulling a 1920px file onto a phone.
+
+            Only the first slide is eager with a high fetch priority - it is
+            the Largest Contentful Paint element. The rest stay lazy until the
+            slideshow promotes them after load.
+          -->
+          <picture>
+            <source type="image/webp" sizes="100vw"
+                    srcset="img/hero-4-760.webp 760w, img/hero-4-1200.webp 1200w, img/hero-4.webp 1920w">
+            <source type="image/jpeg" sizes="100vw"
+                    srcset="img/hero-4-760.jpg 760w, img/hero-4-1200.jpg 1200w, img/hero-4.jpg 1920w">
+            <img src="img/hero-4.jpg" alt="Crystal coupe cocktail with a smoked orange peel on a dark marble bar top" width="1920" height="1080"
+                 loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <div class="hero__scrim"></div>
+
+        <div class="hero__body">
+          <div class="hero__copy">
+            <p class="eyebrow hero__eyebrow">The bar</p>
+            <h1 class="hero__title">A short list,<br>made properly</h1>
+            <p class="hero__text">Twelve stools, six cocktails, and a wine list that leans to small growers. No reservation needed.</p>
+            <div class="hero__actions">
+              <a class="btn" href="contact.html">Find us</a>
+              <a class="btn btn--ghost" href="about.html">Our story</a>
+            </div>
+          </div>
+        </div>
+      </article>
+      
+    </div>
+
+    <!-- Controls sit outside the slides so they never fade with them -->
+      <div class="hero__controls">
+        <p class="hero__count">
+          <span data-slide-current>01</span>
+          <span class="hero__count-total">/ 04</span>
+        </p>
+        <div class="hero__dots" role="group" aria-label="Choose a slide">
+          
+          <button class="hero__dot is-active" type="button" data-slide-dot
+                  style="--hero-delay:6500ms" aria-label="Slide 1: The tasting menu"></button>
+          
+          <button class="hero__dot" type="button" data-slide-dot
+                  style="--hero-delay:6500ms" aria-label="Slide 2: The room"></button>
+          
+          <button class="hero__dot" type="button" data-slide-dot
+                  style="--hero-delay:6500ms" aria-label="Slide 3: Over fire"></button>
+          
+          <button class="hero__dot" type="button" data-slide-dot
+                  style="--hero-delay:6500ms" aria-label="Slide 4: The bar"></button>
+          
+        </div>
+        <div class="hero__arrows">
+          <button class="hero__arrow" type="button" data-slide-prev aria-label="Previous slide">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 2 4 8l6 6" stroke="currentColor" stroke-width="1.3"/></svg>
+          </button>
+          <button class="hero__arrow" type="button" data-slide-next aria-label="Next slide">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2l6 6-6 6" stroke="currentColor" stroke-width="1.3"/></svg>
+          </button>
+        </div>
+      </div>
+
+    <span class="hero__cue" aria-hidden="true">Scroll</span>
+    <p class="visually-hidden" aria-live="polite" data-slide-live></p>
+  </section>
+
+    <!--
+      The list is printed twice. The track then translates by exactly -50%,
+      which puts the duplicate where the original started - that is what makes
+      the loop seamless. aria-hidden on the copy so it is not read out twice.
+    -->
+    <div class="marquee" aria-label="At a glance">
+      <div class="marquee__track">
+        <div style="display:flex">
+          <span class="marquee__item">Est. 2014</span><span class="marquee__item">Seasonal tasting menu</span><span class="marquee__item">Twenty-eight seats</span><span class="marquee__item">Wine pairing by the glass</span><span class="marquee__item">Open kitchen</span><span class="marquee__item">Walk-ins at the bar</span>
+        </div>
+        <div style="display:flex" aria-hidden="true">
+          <span class="marquee__item">Est. 2014</span><span class="marquee__item">Seasonal tasting menu</span><span class="marquee__item">Twenty-eight seats</span><span class="marquee__item">Wine pairing by the glass</span><span class="marquee__item">Open kitchen</span><span class="marquee__item">Walk-ins at the bar</span>
+        </div>
+      </div>
+    </div>
+
+
+  <!-- ===================================================================
+       Chef's Special - data/specials.json
+       =================================================================== -->
+  <section class="section" id="specials">
+    <div class="container container--wide">
+      <div class="section__head">
+        <div>
+          <p class="eyebrow" data-reveal="fade">Chef&#39;s Special</p>
+          <h2 class="section__title" data-reveal data-split>This week at the pass</h2>
+        </div>
+        <p class="section__aside" data-reveal data-reveal-delay="120">Three plates the kitchen is cooking right now. They change when the market changes, usually on a Tuesday.</p>
+      </div>
+
+      <div class="specials__grid">
+        
+        <article class="card" data-reveal data-reveal-delay="000">
+          <div class="card__media">
+            <picture>
+              <source srcset="img/special-1.webp" type="image/webp">
+              <img src="img/special-1.jpg" alt="Roasted scallops with cauliflower puree and caviar on a slate plate" width="900" height="1125" loading="lazy" decoding="async">
+            </picture>
+            <span class="card__badge">New this week</span>
+            <span class="card__price"><span class="card__currency">&euro;</span>24</span>
+          </div>
+          <div class="card__body">
+            <p class="card__kicker">First course</p>
+            <h3 class="card__title"><a href="menu.html">Scallop, cauliflower, caviar</a></h3>
+            <p class="card__note">Hand-dived scallop, browned butter cauliflower, oscietra</p>
+            <p class="card__rule"></p>
+          </div>
+        </article>
+        
+        <article class="card" data-reveal data-reveal-delay="100">
+          <div class="card__media">
+            <picture>
+              <source srcset="img/special-2.webp" type="image/webp">
+              <img src="img/special-2.jpg" alt="Slow braised lamb shoulder with charred onion petals and a dark reduction" width="900" height="1125" loading="lazy" decoding="async">
+            </picture>
+            <span class="card__badge">Signature</span>
+            <span class="card__price"><span class="card__currency">&euro;</span>38</span>
+          </div>
+          <div class="card__body">
+            <p class="card__kicker">Main course</p>
+            <h3 class="card__title"><a href="menu.html">Lamb shoulder, onion, pedro ximénez</a></h3>
+            <p class="card__note">Nine hours in the oven, charred onion petals, sherry reduction</p>
+            <p class="card__rule"></p>
+          </div>
+        </article>
+        
+        <article class="card" data-reveal data-reveal-delay="200">
+          <div class="card__media">
+            <picture>
+              <source srcset="img/special-3.webp" type="image/webp">
+              <img src="img/special-3.jpg" alt="Dark chocolate and olive oil tart with gold leaf and a creme fraiche quenelle" width="900" height="1125" loading="lazy" decoding="async">
+            </picture>
+            <span class="card__badge">Last week on</span>
+            <span class="card__price"><span class="card__currency">&euro;</span>16</span>
+          </div>
+          <div class="card__body">
+            <p class="card__kicker">Dessert</p>
+            <h3 class="card__title"><a href="menu.html">Chocolate, olive oil, salt</a></h3>
+            <p class="card__note">Seventy percent ganache tart, Alentejo oil, crème fraîche</p>
+            <p class="card__rule"></p>
+          </div>
+        </article>
+        
+      </div>
+
+      <div class="specials__foot">
+        <a class="link-underline" href="menu.html">
+          See the full menu
+          <span class="link-underline__arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       Customer reviews carousel - data/reviews.json
+       =================================================================== -->
+  <section class="section reviews" data-carousel data-interval="7000"
+           aria-roledescription="carousel" aria-label="Guest reviews">
+    <span class="reviews__mark" aria-hidden="true">&ldquo;</span>
+    <div class="container container--narrow reviews__inner">
+      <p class="eyebrow eyebrow--center" data-reveal="fade">Guests</p>
+      <h2 class="section__title" data-reveal>What people say after</h2>
+
+      <div class="reviews__viewport" data-carousel-viewport>
+        
+        <blockquote class="review is-active" data-carousel-slide
+                    aria-hidden="false">
+          <div class="review__stars" role="img" aria-label="5 out of 5">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="is-full"><path d="M8 0l2.2 5.1L16 5.8l-4 3.8 1 5.6L8 12.6 3 15.2l1-5.6L0 5.8l5.8-.7z"/></svg><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="is-full"><path d="M8 0l2.2 5.1L16 5.8l-4 3.8 1 5.6L8 12.6 3 15.2l1-5.6L0 5.8l5.8-.7z"/></svg><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="is-full"><path d="M8 0l2.2 5.1L16 5.8l-4 3.8 1 5.6L8 12.6 3 15.2l1-5.6L0 5.8l5.8-.7z"/></svg><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="is-full"><path d="M8 0l2.2 5.1L16 5.8l-4 3.8 1 5.6L8 12.6 3 15.2l1-5.6L0 5.8l5.8-.7z"/></svg><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="is-full"><path d="M8 0l2.2 5.1L16 5.8l-4 3.8 1 5.6L8 12.6 3 15.2l1-5.6L0 5.8l5.8-.7z"/></svg>
+          </div>
+          <p class="review__quote">We sat at the counter and watched every course come together. Three hours felt like forty minutes. The lamb is still the best thing I ate all year.</p>
+          <footer class="review__author">
+            <cite class="review__name">Helena Marques</cite>
+            <span class="review__meta">Dined in March &middot; via Google</span>
+          </footer>
+        </blockquote>
+        
+        <blockquote class="review" data-carousel-slide
+                    aria-hidden="true">
+          <div class="review__stars" role="img" aria-label="5 out of 5">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="is-full"><path d="M8 0l2.2 5.1L16 5.8l-4 3.8 1 5.6L8 12.6 3 15.2l1-5.6L0 5.8l5.8-.7z"/></svg><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="is-full"><path d="M8 0l2.2 5.1L16 5.8l-4 3.8 1 5.6L8 12.6 3 15.2l1-5.6L0 5.8l5.8-.7z"/></svg><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="is-full"><path d="M8 0l2.2 5.1L16 5.8l-4 3.8 1 5.6L8 12.6 3 15.2l1-5.6L0 5.8l5.8-.7z"/></svg><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="is-full"><path d="M8 0l2.2 5.1L16 5.8l-4 3.8 1 5.6L8 12.6 3 15.2l1-5.6L0 5.8l5.8-.7z"/></svg><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="is-full"><path d="M8 0l2.2 5.1L16 5.8l-4 3.8 1 5.6L8 12.6 3 15.2l1-5.6L0 5.8l5.8-.7z"/></svg>
+          </div>
+          <p class="review__quote">Booked it for an anniversary and they remembered without being asked. Quiet, dark, genuinely romantic, and the wine pairing was worth every cent.</p>
+          <footer class="review__author">
+            <cite class="review__name">Tomás Ferreira</cite>
+            <span class="review__meta">Dined in February &middot; via TripAdvisor</span>
+          </footer>
+        </blockquote>
+        
+        <blockquote class="review" data-carousel-slide
+                    aria-hidden="true">
+          <div class="review__stars" role="img" aria-label="5 out of 5">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="is-full"><path d="M8 0l2.2 5.1L16 5.8l-4 3.8 1 5.6L8 12.6 3 15.2l1-5.6L0 5.8l5.8-.7z"/></svg><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="is-full"><path d="M8 0l2.2 5.1L16 5.8l-4 3.8 1 5.6L8 12.6 3 15.2l1-5.6L0 5.8l5.8-.7z"/></svg><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="is-full"><path d="M8 0l2.2 5.1L16 5.8l-4 3.8 1 5.6L8 12.6 3 15.2l1-5.6L0 5.8l5.8-.7z"/></svg><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="is-full"><path d="M8 0l2.2 5.1L16 5.8l-4 3.8 1 5.6L8 12.6 3 15.2l1-5.6L0 5.8l5.8-.7z"/></svg><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="is-full"><path d="M8 0l2.2 5.1L16 5.8l-4 3.8 1 5.6L8 12.6 3 15.2l1-5.6L0 5.8l5.8-.7z"/></svg>
+          </div>
+          <p class="review__quote">I have sat through a lot of tasting menus that are mostly theatre. This one is mostly cooking. Nothing on the plate was there for the photograph.</p>
+          <footer class="review__author">
+            <cite class="review__name">Claire Dubois</cite>
+            <span class="review__meta">Dined in April &middot; via Google</span>
+          </footer>
+        </blockquote>
+        
+        <blockquote class="review" data-carousel-slide
+                    aria-hidden="true">
+          <div class="review__stars" role="img" aria-label="5 out of 5">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="is-full"><path d="M8 0l2.2 5.1L16 5.8l-4 3.8 1 5.6L8 12.6 3 15.2l1-5.6L0 5.8l5.8-.7z"/></svg><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="is-full"><path d="M8 0l2.2 5.1L16 5.8l-4 3.8 1 5.6L8 12.6 3 15.2l1-5.6L0 5.8l5.8-.7z"/></svg><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="is-full"><path d="M8 0l2.2 5.1L16 5.8l-4 3.8 1 5.6L8 12.6 3 15.2l1-5.6L0 5.8l5.8-.7z"/></svg><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="is-full"><path d="M8 0l2.2 5.1L16 5.8l-4 3.8 1 5.6L8 12.6 3 15.2l1-5.6L0 5.8l5.8-.7z"/></svg><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="is-full"><path d="M8 0l2.2 5.1L16 5.8l-4 3.8 1 5.6L8 12.6 3 15.2l1-5.6L0 5.8l5.8-.7z"/></svg>
+          </div>
+          <p class="review__quote">Vegetarian menu with no sense of being an afterthought. The cauliflower course was the one everyone at the table talked about on the way home.</p>
+          <footer class="review__author">
+            <cite class="review__name">Priya Raghavan</cite>
+            <span class="review__meta">Dined in January &middot; via OpenTable</span>
+          </footer>
+        </blockquote>
+        
+        <blockquote class="review" data-carousel-slide
+                    aria-hidden="true">
+          <div class="review__stars" role="img" aria-label="4 out of 5">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="is-full"><path d="M8 0l2.2 5.1L16 5.8l-4 3.8 1 5.6L8 12.6 3 15.2l1-5.6L0 5.8l5.8-.7z"/></svg><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="is-full"><path d="M8 0l2.2 5.1L16 5.8l-4 3.8 1 5.6L8 12.6 3 15.2l1-5.6L0 5.8l5.8-.7z"/></svg><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="is-full"><path d="M8 0l2.2 5.1L16 5.8l-4 3.8 1 5.6L8 12.6 3 15.2l1-5.6L0 5.8l5.8-.7z"/></svg><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="is-full"><path d="M8 0l2.2 5.1L16 5.8l-4 3.8 1 5.6L8 12.6 3 15.2l1-5.6L0 5.8l5.8-.7z"/></svg><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="is-empty"><path d="M8 0l2.2 5.1L16 5.8l-4 3.8 1 5.6L8 12.6 3 15.2l1-5.6L0 5.8l5.8-.7z"/></svg>
+          </div>
+          <p class="review__quote">Walked in on a Thursday with no booking, got two stools at the bar, and ended up staying until they turned the lights up. Perfect night.</p>
+          <footer class="review__author">
+            <cite class="review__name">Martin Keogh</cite>
+            <span class="review__meta">Dined in May &middot; via Google</span>
+          </footer>
+        </blockquote>
+        
+      </div>
+
+      <div class="reviews__controls">
+        <button class="reviews__arrow" type="button" data-carousel-prev aria-label="Previous review">
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 2 4 8l6 6" stroke="currentColor" stroke-width="1.3"/></svg>
+        </button>
+        <div class="reviews__dots" role="group" aria-label="Choose a review">
+          
+          <button class="reviews__dot is-active" type="button" data-carousel-dot aria-label="Review 1"></button>
+          
+          <button class="reviews__dot" type="button" data-carousel-dot aria-label="Review 2"></button>
+          
+          <button class="reviews__dot" type="button" data-carousel-dot aria-label="Review 3"></button>
+          
+          <button class="reviews__dot" type="button" data-carousel-dot aria-label="Review 4"></button>
+          
+          <button class="reviews__dot" type="button" data-carousel-dot aria-label="Review 5"></button>
+          
+        </div>
+        <button class="reviews__arrow" type="button" data-carousel-next aria-label="Next review">
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2l6 6-6 6" stroke="currentColor" stroke-width="1.3"/></svg>
+        </button>
+      </div>
+
+      <p class="reviews__sources" data-reveal="fade">
+        <span>4.8 average</span><span>Google</span><span>TripAdvisor</span><span>OpenTable</span>
+      </p>
+      <p class="visually-hidden" aria-live="polite" data-carousel-live></p>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       Story
+       =================================================================== -->
+  <section class="section section--surface" id="story">
+    <div class="container container--wide">
+      <div class="story">
+        <div class="story__media" data-reveal="left">
+          <picture>
+            <source type="image/webp" sizes="(min-width: 1024px) 45vw, 92vw" srcset="img/about-room-600.webp 600w, img/about-room.webp 1200w">
+            <source type="image/jpeg" sizes="(min-width: 1024px) 45vw, 92vw" srcset="img/about-room-600.jpg 600w, img/about-room.jpg 1200w">
+            <img src="img/about-room.jpg" alt="An elegant restaurant interior detail with an arched window, a linen table and a single candle" width="1200" height="1500" loading="lazy" decoding="async">
+          </picture>
+          <span class="story__badge" aria-hidden="true">
+            <strong>11</strong>
+            <span>Years</span>
+          </span>
+        </div>
+
+        <div class="story__body">
+          <p class="eyebrow" data-reveal="fade">Our story</p>
+          <h2 data-reveal>A small room that never grew</h2>
+          <p class="lead" data-reveal data-reveal-delay="80">We opened in 2014 with eleven tables and a borrowed charcoal grill. Eleven years later there are still eleven tables.</p>
+          <p class="story__quote" data-reveal data-reveal-delay="140">Write the menu after the market, not before it.</p>
+          <div data-reveal data-reveal-delay="200">
+            <a class="link-underline" href="about.html">
+              Read our story
+              <span class="link-underline__arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container container--wide">
+      <div class="stats" data-reveal>
+        
+        <div class="stat">
+          <span class="stat__value">28</span>
+          <span class="stat__label">Seats in the room</span>
+        </div>
+        
+        <div class="stat">
+          <span class="stat__value">9</span>
+          <span class="stat__label">Courses on the tasting menu</span>
+        </div>
+        
+        <div class="stat">
+          <span class="stat__value">140</span>
+          <span class="stat__label">Labels on the wine list</span>
+        </div>
+        
+        <div class="stat">
+          <span class="stat__value">11</span>
+          <span class="stat__label">Years in the old quarter</span>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+    <section class="cta-band">
+      <div class="cta-band__bg" data-parallax="60">
+        <picture>
+          <source srcset="img/gallery-1.webp" type="image/webp">
+          <img src="img/gallery-1.jpg" alt="" width="800" height="1000" loading="lazy" decoding="async">
+        </picture>
+      </div>
+
+      <div class="cta-band__inner">
+        <p class="eyebrow eyebrow--center" data-reveal="fade">Reservations</p>
+        <h2 class="cta-band__title" data-reveal>Tables open thirty days ahead</h2>
+        <p class="lead" data-reveal data-reveal-delay="80">
+          The room holds twenty-eight. Friday and Saturday go quickly, and the
+          chef's counter is released on the first of each month.
+        </p>
+        <div class="cta-band__actions" data-reveal data-reveal-delay="160">
+          <a class="btn" href="contact.html">Reserve a table</a>
+          <a class="btn btn--ghost" href="tel:+351210459920">+351 21 045 9920</a>
+        </div>
+        <p class="cta-band__note" data-reveal data-reveal-delay="220">
+          Walk-ins welcome at the bar, every service.
+        </p>
+      </div>
+    </section>
+
+
+</main>
+
+  <footer class="footer">
+    <div class="container container--wide">
+      <div class="footer__grid">
+        <div>
+          <p class="footer__brand-name">Maison Noir</p>
+          <p class="footer__blurb">A candlelit twenty-eight seat dining room serving a seasonal modern European tasting menu in the heart of the old quarter.</p>
+        </div>
+
+        <div>
+          <p class="footer__heading">Find us</p>
+          <div class="footer__list">
+            <span>17 Rue des Lanternes</span>
+            <span>Old Quarter, Lisbon 1100-062</span>
+            <a href="tel:+351210459920">+351 21 045 9920</a>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer__heading">Hours</p>
+          <div class="footer__list">
+            
+            <span>Tuesday–Thursday &middot; 18:00–23:00</span>
+            
+            <span>Friday–Saturday &middot; 18:00–01:00</span>
+            
+            <span>Sunday &middot; 12:30–16:00 lunch only</span>
+            
+            <span>Monday &middot; Closed</span>
+            
+          </div>
+        </div>
+
+        <div>
+          <p class="footer__heading">Explore</p>
+          <div class="footer__list">
+            
+            <a href="index.html">Home</a>
+            
+            <a href="menu.html">Menu</a>
+            
+            <a href="about.html">About</a>
+            
+            <a href="contact.html">Contact</a>
+            
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>&copy; <span data-year>2026</span> Maison Noir. All rights reserved.</span>
+        <div class="footer__social">
+          
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+          
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
+          
+          <a href="https://tripadvisor.com" target="_blank" rel="noopener noreferrer">TripAdvisor</a>
+          
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" data-to-top aria-label="Back to top">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M8 14V2M8 2 2.5 7.5M8 2l5.5 5.5" stroke="currentColor" stroke-width="1.3"/>
+    </svg>
+  </button>
+
+  <script type="module" src="js/main.js"></script>
+
+</body>
+</html>

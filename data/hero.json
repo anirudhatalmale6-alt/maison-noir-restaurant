@@ -1,0 +1,52 @@
+{
+  "slides": [
+    {
+      "eyebrow": "The tasting menu",
+      "title": "Nine courses,<br>one long evening",
+      "text": "Ingredients picked the same morning, cooked over fire, plated in front of you at the pass.",
+      "ctaLabel": "Reserve a table",
+      "ctaHref": "contact.html",
+      "altLabel": "See the menu",
+      "altHref": "menu.html",
+      "image": "hero-1",
+      "alt": "Seared wagyu fillet with charred leek and bone marrow jus on a dark ceramic plate",
+      "focus": "center"
+    },
+    {
+      "eyebrow": "The room",
+      "title": "Twenty-eight seats,<br>lit by candle",
+      "text": "Velvet banquettes, brass light and linen. A room built for the kind of dinner that runs late.",
+      "ctaLabel": "Reserve a table",
+      "ctaHref": "contact.html",
+      "altLabel": "Our story",
+      "altHref": "about.html",
+      "image": "hero-2",
+      "alt": "Candlelit dining room with velvet banquettes, brass pendant lights and linen tables",
+      "focus": "center"
+    },
+    {
+      "eyebrow": "Over fire",
+      "title": "Almost everything<br>sees the coals",
+      "text": "The grill is the centre of this kitchen. Sit at the counter and you will feel the heat from it.",
+      "ctaLabel": "Book the counter",
+      "ctaHref": "contact.html",
+      "altLabel": "See the menu",
+      "altHref": "menu.html",
+      "image": "hero-3",
+      "alt": "Flames rising from a charcoal grill in a dark kitchen",
+      "focus": "center"
+    },
+    {
+      "eyebrow": "The bar",
+      "title": "A short list,<br>made properly",
+      "text": "Twelve stools, six cocktails, and a wine list that leans to small growers. No reservation needed.",
+      "ctaLabel": "Find us",
+      "ctaHref": "contact.html",
+      "altLabel": "Our story",
+      "altHref": "about.html",
+      "image": "hero-4",
+      "alt": "Crystal coupe cocktail with a smoked orange peel on a dark marble bar top",
+      "focus": "center"
+    }
+  ]
+}
