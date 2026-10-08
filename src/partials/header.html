@@ -1,0 +1,52 @@
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="header" data-header>
+    <div class="header__inner">
+      <!--
+        No aria-label here on purpose. An override that does not contain the
+        visible words ("Maison Noir / Est. 2014") breaks voice control: the
+        user says what they can see and nothing matches.
+      -->
+      <a class="brand" href="index.html">
+        <span class="brand__name">{{site.brand.name}}</span>
+        <span class="brand__tag">{{site.brand.established}}</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        {{#each nav}}
+        <a class="nav__link{{#if active}} is-active{{/if}}" href="{{href}}"{{#if active}} aria-current="page"{{/if}}>{{label}}</a>
+        {{/each}}
+      </nav>
+
+      <div class="header__actions">
+        <a class="header__phone" href="tel:{{site.contact.phoneHref}}">{{site.contact.phoneDisplay}}</a>
+        <a class="btn header__cta" href="contact.html">Reserve</a>
+        <button class="burger" type="button" data-burger aria-expanded="false" aria-controls="drawer" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile drawer. Hidden from assistive tech until it opens. -->
+  <div class="drawer" id="drawer" data-drawer role="dialog" aria-modal="true" aria-label="Site menu">
+    <div class="drawer__top">
+      <span class="brand__name">{{site.brand.name}}</span>
+      <button class="drawer__close" type="button" data-drawer-close aria-label="Close menu">&times;</button>
+    </div>
+
+    <nav class="drawer__nav" aria-label="Mobile">
+      {{#each nav}}
+      <a class="drawer__link{{#if active}} is-active{{/if}}" href="{{href}}">
+        <span class="drawer__index">{{@padded}}</span>
+        <span>{{label}}</span>
+      </a>
+      {{/each}}
+    </nav>
+
+    <div class="drawer__foot">
+      <a href="tel:{{site.contact.phoneHref}}">{{site.contact.phoneDisplay}}</a>
+      <span>{{site.contact.addressLine1}}, {{site.contact.addressLine2}}</span>
+      <a class="btn btn--block" href="contact.html">Reserve a table</a>
+    </div>
+  </div>

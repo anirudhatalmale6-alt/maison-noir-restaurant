@@ -1,0 +1,116 @@
+@use '../abstracts' as *;
+
+.story {
+  display: grid;
+  gap: $space-xl;
+  align-items: center;
+
+  @include from($bp-lg) {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+    gap: $space-3xl;
+  }
+}
+
+.story--flip {
+  @include from($bp-lg) {
+    .story__media {
+      order: 2;
+    }
+  }
+}
+
+.story__media {
+  position: relative;
+
+  img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+
+  // offset brass frame, drawn behind the photograph
+  &::before {
+    content: '';
+    position: absolute;
+    inset: $space-md $space-md (-$space-md) (-$space-md);
+    border: 1px solid rgba(199, 154, 70, 0.45);
+    z-index: -1;
+  }
+}
+
+.story__badge {
+  position: absolute;
+  right: (-$space-sm);
+  bottom: (-$space-sm);
+  display: grid;
+  place-items: center;
+  gap: 0.1em;
+  width: clamp(6.5rem, 16vw, 9rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: $brass;
+  color: $ink-900;
+  text-align: center;
+  line-height: 1.1;
+
+  strong {
+    font-family: $font-display;
+    font-size: $step-3;
+    font-weight: 500;
+  }
+
+  span {
+    font-size: $step--2;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+}
+
+.story__body {
+  display: grid;
+  gap: $space-md;
+}
+
+.story__quote {
+  @include display($step-2);
+  font-style: italic;
+  color: $brass-light;
+  padding-left: $space-md;
+  border-left: 1px solid rgba(199, 154, 70, 0.5);
+}
+
+// Stats --------------------------------------------------------------------
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: $line;
+  border: 1px solid $line;
+
+  @include from($bp-lg) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.stat {
+  display: grid;
+  gap: $space-3xs;
+  padding: $space-lg $space-md;
+  background: $ink-900;
+  text-align: center;
+}
+
+.stat__value {
+  font-family: $font-display;
+  font-size: $step-4;
+  line-height: 1;
+  color: $brass-light;
+}
+
+.stat__label {
+  font-size: $step--1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $muted;
+}

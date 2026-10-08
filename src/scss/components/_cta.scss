@@ -1,0 +1,66 @@
+@use '../abstracts' as *;
+
+// Full-bleed reservation band. The background sits on its own layer with a
+// fixed attachment on pointer devices only - on touch, a fixed background is
+// both janky and, on iOS, simply broken.
+
+.cta-band {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  text-align: center;
+}
+
+.cta-band__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+@media (hover: hover) and (min-width: $bp-lg) {
+  .cta-band__bg img {
+    // mild parallax driven by js/modules/parallax.js via --parallax
+    transform: translate3d(0, var(--parallax, 0), 0) scale(1.12);
+    will-change: transform;
+  }
+}
+
+.cta-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(8, 8, 10, 0.78);
+}
+
+.cta-band__inner {
+  @include container($container-narrow);
+  display: grid;
+  gap: $space-md;
+  justify-items: center;
+  padding-block: $space-3xl;
+}
+
+.cta-band__title {
+  @include display($step-5);
+}
+
+.cta-band__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-sm;
+  justify-content: center;
+  margin-top: $space-sm;
+}
+
+.cta-band__note {
+  font-size: $step--1;
+  color: $muted;
+  letter-spacing: 0.08em;
+}

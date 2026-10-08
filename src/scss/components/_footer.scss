@@ -1,0 +1,119 @@
+@use '../abstracts' as *;
+
+.footer {
+  border-top: 1px solid $line;
+  background: $ink-800;
+  padding-block: $space-2xl $space-lg;
+}
+
+.footer__grid {
+  display: grid;
+  gap: $space-xl;
+
+  @include from($bp-md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include from($bp-lg) {
+    grid-template-columns: 1.4fr 1fr 1fr 1.1fr;
+    gap: $space-2xl;
+  }
+}
+
+.footer__brand-name {
+  @include display($step-3);
+  margin-bottom: $space-xs;
+}
+
+.footer__blurb {
+  color: $muted;
+  font-size: $step--1;
+  max-width: 34ch;
+}
+
+.footer__heading {
+  @include eyebrow;
+  font-size: $step--2;
+  margin-bottom: $space-sm;
+}
+
+.footer__list {
+  display: grid;
+  gap: $space-2xs;
+  font-size: $step--1;
+  color: $ivory-dim;
+
+  a {
+    transition: color $dur-fast $ease-out;
+
+    &:hover,
+    &:focus-visible {
+      color: $brass-light;
+    }
+  }
+}
+
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-sm;
+  margin-top: $space-2xl;
+  padding-top: $space-md;
+  border-top: 1px solid $line;
+  font-size: $step--2;
+  letter-spacing: 0.1em;
+  color: $muted;
+}
+
+.footer__social {
+  display: flex;
+  gap: $space-md;
+  font-size: $step--2;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+// Back-to-top pill, bottom right, fades in past the first screen
+.to-top {
+  position: fixed;
+  right: $gutter;
+  bottom: $gutter;
+  z-index: $z-raised;
+  display: inline-grid;
+  place-items: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  border: 1px solid $line-strong;
+  background: rgba(8, 8, 10, 0.8);
+  backdrop-filter: blur(8px);
+  color: $ivory;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.75rem);
+  transition:
+    opacity $dur-med $ease-out,
+    transform $dur-med $ease-out,
+    visibility 0s linear $dur-med,
+    background-color $dur-fast $ease-out;
+
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition-delay: 0s;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background: $brass;
+    border-color: $brass;
+    color: $ink-900;
+  }
+
+  svg {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+}

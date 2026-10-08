@@ -1,0 +1,227 @@
+@use '../abstracts' as *;
+
+// ---------------------------------------------------------------------------
+// Customer reviews carousel
+//
+// One quote at a time, crossfading. The slides are absolutely positioned on
+// top of each other inside a viewport whose height is set by the tallest
+// quote, measured once by JS - that stops the section jumping as it advances.
+// With JS off, all quotes render stacked and readable.
+// ---------------------------------------------------------------------------
+
+.reviews {
+  position: relative;
+  background: $ink-800;
+  overflow: hidden;
+}
+
+// An oversized Bodoni quote mark sitting behind the text as a watermark
+.reviews__mark {
+  position: absolute;
+  top: -0.35em;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: $font-display;
+  font-size: clamp(14rem, 34vw, 26rem);
+  line-height: 1;
+  color: $brass;
+  opacity: 0.07;
+  pointer-events: none;
+  user-select: none;
+}
+
+.reviews__inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.reviews__viewport {
+  position: relative;
+  margin-top: $space-xl;
+}
+
+.review {
+  display: grid;
+  gap: $space-md;
+  justify-items: center;
+  max-width: 54rem;
+  margin-inline: auto;
+}
+
+// Only once the module has taken over do the slides stack.
+.js .reviews__viewport .review {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(1.25rem);
+  transition:
+    opacity $dur-med $ease-out,
+    transform $dur-med $ease-out,
+    visibility 0s linear $dur-med;
+  pointer-events: none;
+}
+
+.js .reviews__viewport .review.is-active {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0s;
+  pointer-events: auto;
+}
+
+// Without JS, separate the stacked quotes so they read as a list.
+.reviews__viewport .review + .review {
+  margin-top: $space-xl;
+}
+
+.js .reviews__viewport .review + .review {
+  margin-top: 0;
+}
+
+.review__stars {
+  display: flex;
+  gap: 0.3rem;
+  color: $brass;
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .is-empty {
+    color: $line-strong;
+  }
+}
+
+.review__quote {
+  @include display($step-3);
+  font-style: italic;
+  line-height: 1.3;
+  color: $ivory;
+
+  // typographic quotes added here rather than in the JSON, so the content
+  // file stays clean plain text
+  &::before {
+    content: '\201C';
+  }
+  &::after {
+    content: '\201D';
+  }
+}
+
+.review__author {
+  display: grid;
+  gap: $space-3xs;
+  margin-top: $space-2xs;
+}
+
+.review__name {
+  font-size: $step--1;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $ivory;
+}
+
+.review__meta {
+  font-size: $step--1;
+  color: $muted;
+}
+
+// Controls -----------------------------------------------------------------
+
+.reviews__controls {
+  display: none;
+
+  .js & {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $space-md;
+    margin-top: $space-xl;
+  }
+}
+
+.reviews__arrow {
+  display: inline-grid;
+  place-items: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  border: 1px solid $line-strong;
+  color: $ivory;
+  transition:
+    background-color $dur-fast $ease-out,
+    border-color $dur-fast $ease-out,
+    color $dur-fast $ease-out;
+
+  &:hover,
+  &:focus-visible {
+    background: $brass;
+    border-color: $brass;
+    color: $ink-900;
+  }
+
+  svg {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+}
+
+.reviews__dots {
+  display: flex;
+  gap: $space-2xs;
+}
+
+// The visible dot is 8px, but the button around it is 28px square. WCAG 2.2
+// asks for a 24px minimum touch target, and a bare 8px dot is genuinely hard
+// to hit with a thumb - the padding is not just there to satisfy an audit.
+.reviews__dot {
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  background: none;
+  border: 0;
+
+  &::after {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    border: 1px solid $line-strong;
+    border-radius: 50%;
+    transition:
+      background-color $dur-fast $ease-out,
+      border-color $dur-fast $ease-out,
+      transform $dur-fast $ease-out;
+  }
+
+  &:hover::after {
+    border-color: $ivory-dim;
+  }
+
+  &.is-active::after {
+    background: $brass;
+    border-color: $brass;
+    transform: scale(1.35);
+  }
+}
+
+// Source badges under the carousel ----------------------------------------
+
+.reviews__sources {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: $space-md;
+  margin-top: $space-xl;
+  padding-top: $space-lg;
+  border-top: 1px solid $line;
+  font-size: $step--2;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: $muted;
+}

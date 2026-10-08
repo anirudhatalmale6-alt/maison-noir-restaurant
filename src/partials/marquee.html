@@ -1,0 +1,15 @@
+    <!--
+      The list is printed twice. The track then translates by exactly -50%,
+      which puts the duplicate where the original started - that is what makes
+      the loop seamless. aria-hidden on the copy so it is not read out twice.
+    -->
+    <div class="marquee" aria-label="At a glance">
+      <div class="marquee__track">
+        <div style="display:flex">
+          {{#each site.marquee}}<span class="marquee__item">{{@value}}</span>{{/each}}
+        </div>
+        <div style="display:flex" aria-hidden="true">
+          {{#each site.marquee}}<span class="marquee__item">{{@value}}</span>{{/each}}
+        </div>
+      </div>
+    </div>

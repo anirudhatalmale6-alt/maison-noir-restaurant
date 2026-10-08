@@ -1,0 +1,185 @@
+@use '../abstracts' as *;
+
+// ---------------------------------------------------------------------------
+// Menu page
+//
+// Courses are plain sections in the HTML. The filter bar is progressive: with
+// JS off every course is visible and the bar is hidden, so the page is still
+// a complete, printable menu.
+// ---------------------------------------------------------------------------
+
+.menu-filters {
+  display: none;
+
+  .js & {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-2xs;
+    justify-content: center;
+    margin-bottom: $space-xl;
+    padding-bottom: $space-md;
+  }
+}
+
+.menu-filter {
+  padding: 0.7em 1.4em;
+  border: 1px solid $line;
+  font-size: $step--1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: $ivory-dim;
+  transition:
+    color $dur-fast $ease-out,
+    border-color $dur-fast $ease-out,
+    background-color $dur-fast $ease-out;
+
+  &:hover {
+    color: $ivory;
+    border-color: $line-strong;
+  }
+
+  &[aria-pressed='true'] {
+    background: $brass;
+    border-color: $brass;
+    color: $ink-900;
+  }
+}
+
+.course {
+  scroll-margin-top: 7rem;
+
+  & + & {
+    margin-top: $space-2xl;
+    padding-top: $space-2xl;
+    border-top: 1px solid $line;
+  }
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.course__head {
+  display: grid;
+  gap: $space-2xs;
+  margin-bottom: $space-lg;
+
+  @include from($bp-lg) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: baseline;
+    gap: $space-lg;
+  }
+}
+
+.course__note {
+  color: $muted;
+  font-size: $step--1;
+}
+
+.course__list {
+  display: grid;
+  gap: $space-md;
+
+  @include from($bp-lg) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: $space-2xl;
+  }
+}
+
+.dish {
+  display: grid;
+  gap: $space-3xs;
+  padding-bottom: $space-md;
+  border-bottom: 1px solid $line;
+  transition: border-color $dur-fast $ease-out;
+
+  &:hover {
+    border-bottom-color: rgba(199, 154, 70, 0.5);
+  }
+}
+
+.dish__top {
+  display: flex;
+  align-items: baseline;
+  gap: $space-xs;
+}
+
+.dish__name {
+  font-family: $font-display;
+  font-size: $step-1;
+  line-height: 1.25;
+  flex: none;
+  max-width: 78%;
+}
+
+// The classic dotted leader between dish and price. A repeating gradient
+// rather than a row of full stops, so it stays crisp at any width.
+.dish__leader {
+  flex: 1;
+  height: 1px;
+  margin-bottom: 0.35em;
+  background-image: radial-gradient(circle, $line-strong 1px, transparent 1px);
+  background-size: 6px 1px;
+  background-repeat: repeat-x;
+  background-position: bottom;
+}
+
+.dish__price {
+  font-family: $font-display;
+  font-size: $step-1;
+  color: $brass-light;
+  white-space: nowrap;
+
+  &::before {
+    content: '€';
+    font-size: 0.7em;
+    vertical-align: super;
+    margin-right: 0.1em;
+    color: $brass;
+  }
+}
+
+.dish__desc {
+  color: $muted;
+  font-size: $step--1;
+  line-height: 1.6;
+  max-width: 48ch;
+}
+
+.dish__tags {
+  display: flex;
+  gap: $space-3xs;
+  margin-top: $space-3xs;
+}
+
+.tag {
+  padding: 0.15em 0.55em;
+  border: 1px solid $line-strong;
+  font-size: $step--2;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $muted;
+}
+
+.tag--signature {
+  border-color: rgba(199, 154, 70, 0.6);
+  color: $brass-light;
+}
+
+.menu-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-md;
+  justify-content: center;
+  margin-top: $space-2xl;
+  padding-top: $space-lg;
+  border-top: 1px solid $line;
+  font-size: $step--1;
+  color: $muted;
+
+  span strong {
+    color: $brass;
+    font-weight: 500;
+    margin-right: 0.4em;
+  }
+}

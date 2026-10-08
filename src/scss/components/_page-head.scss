@@ -1,0 +1,166 @@
+@use '../abstracts' as *;
+
+// Compact hero used by the inner pages. Shorter than the home hero so the
+// content starts above the fold on a laptop.
+
+.page-head {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-items: end;
+  min-height: 58vh;
+  padding-top: 7rem;
+  overflow: hidden;
+
+  @include from($bp-lg) {
+    min-height: 62vh;
+  }
+}
+
+.page-head__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    @include photo-scrim(0.92, 0.25);
+    @include photo-scrim-side(0.92, 0.25);
+  }
+}
+
+.page-head__inner {
+  @include container($container-wide);
+  padding-bottom: $space-xl;
+  display: grid;
+  gap: $space-md;
+}
+
+.page-head__title {
+  @include display($step-6);
+}
+
+.page-head__intro {
+  color: $ivory-dim;
+  font-size: $step-1;
+  max-width: 54ch;
+}
+
+// Breadcrumb ---------------------------------------------------------------
+
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2xs;
+  font-size: $step--2;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $muted;
+
+  li + li::before {
+    content: '/';
+    margin-right: $space-2xs;
+    color: $brass;
+  }
+
+  a:hover {
+    color: $ivory;
+  }
+}
+
+// Gallery ------------------------------------------------------------------
+
+// Two explicit rows rather than auto rows: the tall tile spans both, so the
+// column beside it has to add up to exactly the same height or the grid ends
+// with a ragged bottom edge.
+.gallery {
+  display: grid;
+  gap: $space-md;
+
+  @include from($bp-md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, clamp(13rem, 19vw, 19rem));
+  }
+}
+
+.gallery__item {
+  position: relative;
+  overflow: hidden;
+  min-height: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform $dur-slow $ease-out;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+
+  // stacked on a phone, so each tile needs its own shape
+  @include until($bp-md) {
+    img {
+      aspect-ratio: 4 / 3;
+    }
+  }
+}
+
+.gallery__item--tall {
+  @include from($bp-md) {
+    grid-row: span 2;
+  }
+
+  @include until($bp-md) {
+    img {
+      aspect-ratio: 4 / 5;
+    }
+  }
+}
+
+// Team ---------------------------------------------------------------------
+
+.team {
+  display: grid;
+  gap: $space-lg;
+
+  @include from($bp-md) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: $space-xl;
+  }
+}
+
+.team__member {
+  display: grid;
+  gap: $space-3xs;
+  padding-top: $space-sm;
+  border-top: 1px solid rgba(199, 154, 70, 0.45);
+}
+
+.team__name {
+  font-family: $font-display;
+  font-size: $step-2;
+}
+
+.team__role {
+  font-size: $step--2;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $brass;
+}
+
+.team__note {
+  color: $muted;
+  font-size: $step--1;
+  line-height: 1.6;
+  margin-top: $space-3xs;
+}

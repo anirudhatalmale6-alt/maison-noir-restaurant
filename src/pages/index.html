@@ -1,0 +1,236 @@
+<!-- page {
+  "id": "home",
+  "canonical": "",
+  "title": "Maison Noir | Modern European tasting menus in Lisbon",
+  "description": "A candlelit twenty-eight seat dining room in the old quarter of Lisbon. Nine-course seasonal tasting menu, open kitchen, wine list built on small growers.",
+  "hero": "hero-1"
+} -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{> head}}
+</head>
+<body>
+{{> header}}
+
+<main id="main">
+
+  <!-- ===================================================================
+       Hero slideshow
+       Slides come from data/hero.json. Add, remove or reorder entries
+       there and the markup below regenerates on the next build.
+       =================================================================== -->
+  <section class="hero" data-slideshow data-interval="6500" aria-roledescription="carousel" aria-label="Maison Noir">
+    <div class="hero__slides">
+      {{#each hero.slides}}
+      <article class="hero__slide{{#if @isFirst}} is-active{{/if}}" data-slide
+               aria-roledescription="slide" aria-label="{{@number}} of {{hero.total}}"
+               {{#if @isFirst}}aria-hidden="false"{{else}}aria-hidden="true"{{/if}}>
+        <div class="hero__media">
+          <!--
+            Three widths per format. The hero is always full-bleed, so the
+            `sizes` hint is simply 100vw and the browser picks the step that
+            matches the device, rather than pulling a 1920px file onto a phone.
+
+            Only the first slide is eager with a high fetch priority - it is
+            the Largest Contentful Paint element. The rest stay lazy until the
+            slideshow promotes them after load.
+          -->
+          <picture>
+            <source type="image/webp" sizes="100vw"
+                    srcset="img/{{image}}-760.webp 760w, img/{{image}}-1200.webp 1200w, img/{{image}}.webp 1920w">
+            <source type="image/jpeg" sizes="100vw"
+                    srcset="img/{{image}}-760.jpg 760w, img/{{image}}-1200.jpg 1200w, img/{{image}}.jpg 1920w">
+            <img src="img/{{image}}.jpg" alt="{{alt}}" width="1920" height="1080"
+                 {{#if @isFirst}}fetchpriority="high" decoding="sync"{{else}}loading="lazy" decoding="async"{{/if}}>
+          </picture>
+        </div>
+        <div class="hero__scrim"></div>
+
+        <div class="hero__body">
+          <div class="hero__copy">
+            <p class="eyebrow hero__eyebrow">{{eyebrow}}</p>
+            <h1 class="hero__title">{{{title}}}</h1>
+            <p class="hero__text">{{text}}</p>
+            <div class="hero__actions">
+              <a class="btn" href="{{ctaHref}}">{{ctaLabel}}</a>
+              <a class="btn btn--ghost" href="{{altHref}}">{{altLabel}}</a>
+            </div>
+          </div>
+        </div>
+      </article>
+      {{/each}}
+    </div>
+
+    <!-- Controls sit outside the slides so they never fade with them -->
+      <div class="hero__controls">
+        <p class="hero__count">
+          <span data-slide-current>01</span>
+          <span class="hero__count-total">/ {{hero.total}}</span>
+        </p>
+        <div class="hero__dots" role="group" aria-label="Choose a slide">
+          {{#each hero.slides}}
+          <button class="hero__dot{{#if @isFirst}} is-active{{/if}}" type="button" data-slide-dot
+                  style="--hero-delay:6500ms" aria-label="Slide {{@number}}: {{eyebrow}}"></button>
+          {{/each}}
+        </div>
+        <div class="hero__arrows">
+          <button class="hero__arrow" type="button" data-slide-prev aria-label="Previous slide">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 2 4 8l6 6" stroke="currentColor" stroke-width="1.3"/></svg>
+          </button>
+          <button class="hero__arrow" type="button" data-slide-next aria-label="Next slide">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2l6 6-6 6" stroke="currentColor" stroke-width="1.3"/></svg>
+          </button>
+        </div>
+      </div>
+
+    <span class="hero__cue" aria-hidden="true">Scroll</span>
+    <p class="visually-hidden" aria-live="polite" data-slide-live></p>
+  </section>
+
+{{> marquee}}
+
+  <!-- ===================================================================
+       Chef's Special - data/specials.json
+       =================================================================== -->
+  <section class="section" id="specials">
+    <div class="container container--wide">
+      <div class="section__head">
+        <div>
+          <p class="eyebrow" data-reveal="fade">{{specials.eyebrow}}</p>
+          <h2 class="section__title" data-reveal data-split>{{specials.title}}</h2>
+        </div>
+        <p class="section__aside" data-reveal data-reveal-delay="120">{{specials.intro}}</p>
+      </div>
+
+      <div class="specials__grid">
+        {{#each specials.items}}
+        <article class="card" data-reveal data-reveal-delay="{{@index}}00">
+          <div class="card__media">
+            <picture>
+              <source srcset="img/{{image}}.webp" type="image/webp">
+              <img src="img/{{image}}.jpg" alt="{{alt}}" width="900" height="1125" loading="lazy" decoding="async">
+            </picture>
+            {{#if badge}}<span class="card__badge">{{badge}}</span>{{/if}}
+            <span class="card__price"><span class="card__currency">&euro;</span>{{price}}</span>
+          </div>
+          <div class="card__body">
+            <p class="card__kicker">{{course}}</p>
+            <h3 class="card__title"><a href="menu.html">{{name}}</a></h3>
+            <p class="card__note">{{note}}</p>
+            <p class="card__rule"></p>
+          </div>
+        </article>
+        {{/each}}
+      </div>
+
+      <div class="specials__foot">
+        <a class="link-underline" href="{{specials.ctaHref}}">
+          {{specials.ctaLabel}}
+          <span class="link-underline__arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       Customer reviews carousel - data/reviews.json
+       =================================================================== -->
+  <section class="section reviews" data-carousel data-interval="7000"
+           aria-roledescription="carousel" aria-label="Guest reviews">
+    <span class="reviews__mark" aria-hidden="true">&ldquo;</span>
+    <div class="container container--narrow reviews__inner">
+      <p class="eyebrow eyebrow--center" data-reveal="fade">{{reviews.eyebrow}}</p>
+      <h2 class="section__title" data-reveal>{{reviews.title}}</h2>
+
+      <div class="reviews__viewport" data-carousel-viewport>
+        {{#each reviews.items}}
+        <blockquote class="review{{#if @isFirst}} is-active{{/if}}" data-carousel-slide
+                    {{#if @isFirst}}aria-hidden="false"{{else}}aria-hidden="true"{{/if}}>
+          <div class="review__stars" role="img" aria-label="{{rating}} out of 5">
+            {{#each stars}}<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="{{#if @value}}is-full{{else}}is-empty{{/if}}"><path d="M8 0l2.2 5.1L16 5.8l-4 3.8 1 5.6L8 12.6 3 15.2l1-5.6L0 5.8l5.8-.7z"/></svg>{{/each}}
+          </div>
+          <p class="review__quote">{{quote}}</p>
+          <footer class="review__author">
+            <cite class="review__name">{{name}}</cite>
+            <span class="review__meta">{{meta}} &middot; via {{source}}</span>
+          </footer>
+        </blockquote>
+        {{/each}}
+      </div>
+
+      <div class="reviews__controls">
+        <button class="reviews__arrow" type="button" data-carousel-prev aria-label="Previous review">
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 2 4 8l6 6" stroke="currentColor" stroke-width="1.3"/></svg>
+        </button>
+        <div class="reviews__dots" role="group" aria-label="Choose a review">
+          {{#each reviews.items}}
+          <button class="reviews__dot{{#if @isFirst}} is-active{{/if}}" type="button" data-carousel-dot aria-label="Review {{@number}}"></button>
+          {{/each}}
+        </div>
+        <button class="reviews__arrow" type="button" data-carousel-next aria-label="Next review">
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2l6 6-6 6" stroke="currentColor" stroke-width="1.3"/></svg>
+        </button>
+      </div>
+
+      <p class="reviews__sources" data-reveal="fade">
+        <span>4.8 average</span><span>Google</span><span>TripAdvisor</span><span>OpenTable</span>
+      </p>
+      <p class="visually-hidden" aria-live="polite" data-carousel-live></p>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       Story
+       =================================================================== -->
+  <section class="section section--surface" id="story">
+    <div class="container container--wide">
+      <div class="story">
+        <div class="story__media" data-reveal="left">
+          <picture>
+            <source type="image/webp" sizes="(min-width: 1024px) 45vw, 92vw" srcset="img/about-room-600.webp 600w, img/about-room.webp 1200w">
+            <source type="image/jpeg" sizes="(min-width: 1024px) 45vw, 92vw" srcset="img/about-room-600.jpg 600w, img/about-room.jpg 1200w">
+            <img src="img/about-room.jpg" alt="{{about.imageAlt}}" width="1200" height="1500" loading="lazy" decoding="async">
+          </picture>
+          <span class="story__badge" aria-hidden="true">
+            <strong>11</strong>
+            <span>Years</span>
+          </span>
+        </div>
+
+        <div class="story__body">
+          <p class="eyebrow" data-reveal="fade">{{about.eyebrow}}</p>
+          <h2 data-reveal>{{about.title}}</h2>
+          <p class="lead" data-reveal data-reveal-delay="80">{{about.lead}}</p>
+          <p class="story__quote" data-reveal data-reveal-delay="140">{{about.pullquote}}</p>
+          <div data-reveal data-reveal-delay="200">
+            <a class="link-underline" href="about.html">
+              Read our story
+              <span class="link-underline__arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container container--wide">
+      <div class="stats" data-reveal>
+        {{#each site.stats}}
+        <div class="stat">
+          <span class="stat__value">{{value}}</span>
+          <span class="stat__label">{{label}}</span>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </section>
+
+{{> cta-band}}
+
+</main>
+
+{{> footer}}
+</body>
+</html>

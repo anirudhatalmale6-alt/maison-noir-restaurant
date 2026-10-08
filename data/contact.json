@@ -1,0 +1,22 @@
+{
+  "eyebrow": "Reservations",
+  "title": "Book a table",
+  "intro": "Tables are released thirty days ahead. For parties larger than six, or for the chef's counter, send us a note and we will call you back.",
+  "occasions": [
+    "No occasion, just dinner",
+    "Birthday",
+    "Anniversary",
+    "Business dinner",
+    "Chef's counter",
+    "Private hire"
+  ],
+  "times": [
+    "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00"
+  ],
+  "notes": [
+    { "title": "Cancellations", "text": "Let us know twelve hours ahead and there is no charge. The room is small, so a no-show costs us a whole table." },
+    { "title": "Allergies", "text": "Tell us when you book, not when you sit down. Almost everything can be adapted with a day's notice." },
+    { "title": "Children", "text": "Welcome at the Sunday lunch service. The evening room is quiet by design." },
+    { "title": "Parking", "text": "The old quarter is pedestrian after 19:00. The nearest garage is on Rua do Castelo, four minutes on foot." }
+  ]
+}

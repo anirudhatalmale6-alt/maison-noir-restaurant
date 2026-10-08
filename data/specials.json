@@ -1,0 +1,36 @@
+{
+  "eyebrow": "Chef's Special",
+  "title": "This week at the pass",
+  "intro": "Three plates the kitchen is cooking right now. They change when the market changes, usually on a Tuesday.",
+  "ctaLabel": "See the full menu",
+  "ctaHref": "menu.html",
+  "items": [
+    {
+      "name": "Scallop, cauliflower, caviar",
+      "course": "First course",
+      "note": "Hand-dived scallop, browned butter cauliflower, oscietra",
+      "price": "24",
+      "image": "special-1",
+      "alt": "Roasted scallops with cauliflower puree and caviar on a slate plate",
+      "badge": "New this week"
+    },
+    {
+      "name": "Lamb shoulder, onion, pedro ximénez",
+      "course": "Main course",
+      "note": "Nine hours in the oven, charred onion petals, sherry reduction",
+      "price": "38",
+      "image": "special-2",
+      "alt": "Slow braised lamb shoulder with charred onion petals and a dark reduction",
+      "badge": "Signature"
+    },
+    {
+      "name": "Chocolate, olive oil, salt",
+      "course": "Dessert",
+      "note": "Seventy percent ganache tart, Alentejo oil, crème fraîche",
+      "price": "16",
+      "image": "special-3",
+      "alt": "Dark chocolate and olive oil tart with gold leaf and a creme fraiche quenelle",
+      "badge": "Last week on"
+    }
+  ]
+}

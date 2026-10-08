@@ -1,0 +1,196 @@
+<!-- page {
+  "id": "contact",
+  "canonical": "contact.html",
+  "title": "Reservations | Maison Noir, Lisbon",
+  "description": "Book a table at Maison Noir. Tables are released thirty days ahead. Address, opening hours and everything you need before you arrive.",
+  "hero": "hero-4"
+} -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{> head}}
+</head>
+<body>
+{{> header}}
+
+<main id="main">
+
+  <section class="page-head">
+    <div class="page-head__bg">
+      <picture>
+        <source type="image/webp" sizes="100vw" srcset="img/hero-4-760.webp 760w, img/hero-4-1200.webp 1200w, img/hero-4.webp 1920w">
+        <source type="image/jpeg" sizes="100vw" srcset="img/hero-4-760.jpg 760w, img/hero-4-1200.jpg 1200w, img/hero-4.jpg 1920w">
+        <img src="img/hero-4.jpg" alt="" width="1920" height="1080" fetchpriority="high" decoding="sync">
+      </picture>
+    </div>
+    <div class="page-head__inner">
+      <nav aria-label="Breadcrumb">
+        <ol class="crumbs">
+          <li><a href="index.html">Home</a></li>
+          <li aria-current="page">Contact</li>
+        </ol>
+      </nav>
+      <p class="eyebrow">{{contact.eyebrow}}</p>
+      <h1 class="page-head__title">{{contact.title}}</h1>
+      <p class="page-head__intro">{{contact.intro}}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container container--wide">
+      <div class="contact-grid">
+
+        <!-- ===============================================================
+             Reservation form
+             Client-side validation only in this build. Set ENDPOINT in
+             js/modules/reservation.js to post it somewhere real.
+             =============================================================== -->
+        <div>
+          <form class="form" data-reservation novalidate data-reveal="fade">
+            <div class="form__row">
+              <div class="field">
+                <label class="field__label" for="name">Name</label>
+                <input class="field__control" id="name" name="name" type="text" required minlength="2" autocomplete="name" placeholder="Your name">
+                <p class="field__error" aria-live="polite"></p>
+              </div>
+              <div class="field">
+                <label class="field__label" for="email">Email</label>
+                <input class="field__control" id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
+                <p class="field__error" aria-live="polite"></p>
+              </div>
+            </div>
+
+            <div class="form__row">
+              <div class="field">
+                <label class="field__label" for="phone">Phone</label>
+                <input class="field__control" id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="+351 …">
+                <p class="field__error" aria-live="polite"></p>
+              </div>
+              <div class="field">
+                <label class="field__label" for="occasion">Occasion</label>
+                <select class="field__control" id="occasion" name="occasion">
+                  {{#each contact.occasions}}
+                  <option>{{@value}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
+
+            <div class="form__row form__row--three">
+              <div class="field">
+                <label class="field__label" for="date">Date</label>
+                <input class="field__control" id="date" name="date" type="date" required>
+                <p class="field__error" aria-live="polite"></p>
+              </div>
+              <div class="field">
+                <label class="field__label" for="time">Time</label>
+                <select class="field__control" id="time" name="time" required>
+                  {{#each contact.times}}
+                  <option>{{@value}}</option>
+                  {{/each}}
+                </select>
+              </div>
+              <div class="field">
+                <label class="field__label" for="guests">Guests</label>
+                <input class="field__control" id="guests" name="guests" type="number" min="1" max="12" value="2" required>
+                <p class="field__error" aria-live="polite"></p>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="notes">Anything we should know</label>
+              <textarea class="field__control" id="notes" name="notes" placeholder="Allergies, a wheelchair, a birthday cake, a quiet corner…"></textarea>
+            </div>
+
+            <!-- Honeypot: invisible to people, irresistible to bots. -->
+            <div class="field--trap" aria-hidden="true">
+              <label for="company">Company</label>
+              <input id="company" name="company" type="text" tabindex="-1" autocomplete="off">
+            </div>
+
+            <label class="form__consent">
+              <input type="checkbox" name="consent" required>
+              <span>I am happy for {{site.brand.name}} to contact me about this booking.</span>
+            </label>
+
+            <div class="form__foot">
+              <button class="btn" type="submit">Request a table</button>
+              <p class="form__status" data-reservation-status hidden></p>
+            </div>
+          </form>
+
+          <div class="form__success" data-reservation-success hidden>
+            <p class="eyebrow eyebrow--center">Request received</p>
+            <p class="form__success-title">We will be in touch shortly</p>
+            <p class="text-muted">
+              Nothing is confirmed until you hear back from us, usually within
+              a couple of hours during service. If it is for tonight, please
+              call instead on
+              <a class="text-accent" href="tel:{{site.contact.phoneHref}}">{{site.contact.phoneDisplay}}</a>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Side column -->
+        <aside>
+          <div class="info-block">
+            <p class="info-block__label">Address</p>
+            <p class="info-block__value">
+              {{site.contact.addressLine1}}<br>{{site.contact.addressLine2}}
+            </p>
+          </div>
+
+          <div class="info-block">
+            <p class="info-block__label">Telephone</p>
+            <p class="info-block__value">
+              <a href="tel:{{site.contact.phoneHref}}">{{site.contact.phoneDisplay}}</a>
+            </p>
+          </div>
+
+          <div class="info-block">
+            <p class="info-block__label">Hours</p>
+            <div class="hours">
+              {{#each site.hours}}
+              <p class="hours__row"><span>{{days}}</span><span>{{time}}</span></p>
+              {{/each}}
+            </div>
+          </div>
+
+          <div class="info-block">
+            <p class="info-block__label">Follow</p>
+            <div class="footer__social">
+              {{#each site.social}}
+              <a href="{{url}}" target="_blank" rel="noopener noreferrer">{{label}}</a>
+              {{/each}}
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--surface">
+    <div class="container container--wide">
+      <div class="section__head">
+        <div>
+          <p class="eyebrow" data-reveal="fade">Before you come</p>
+          <h2 class="section__title" data-reveal>Good to know</h2>
+        </div>
+      </div>
+
+      <div class="notes">
+        {{#each contact.notes}}
+        <article class="note" data-reveal data-reveal-delay="{{@index}}00">
+          <h3 class="note__title">{{title}}</h3>
+          <p class="note__text">{{text}}</p>
+        </article>
+        {{/each}}
+      </div>
+    </div>
+  </section>
+
+</main>
+
+{{> footer}}
+</body>
+</html>

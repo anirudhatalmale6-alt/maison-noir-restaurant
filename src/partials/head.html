@@ -1,0 +1,74 @@
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{page.title}}</title>
+  <meta name="description" content="{{page.description}}">
+  <meta name="theme-color" content="#08080a">
+  <link rel="canonical" href="{{site.brand.url}}/{{page.canonical}}">
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{site.brand.name}}">
+  <meta property="og:title" content="{{page.title}}">
+  <meta property="og:description" content="{{page.description}}">
+  <meta property="og:url" content="{{site.brand.url}}/{{page.canonical}}">
+  <meta property="og:image" content="{{site.brand.url}}/img/og-card.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!--
+    The two font files the first screen actually uses are preloaded. The
+    latin-ext pair is left to load normally: preloading a file most visitors
+    never need is a classic way to make a Lighthouse score worse, not better.
+  -->
+  <link rel="preload" href="fonts/bodoni-moda-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!--
+    Preload the hero image at the same widths the markup offers, so the
+    browser starts fetching it while the stylesheet is still in flight rather
+    than after it. This is the page's Largest Contentful Paint element, so it
+    is the one request worth jumping the queue.
+
+    WebP only: every browser that understands `imagesrcset` also understands
+    WebP, so there is no case where this preloads a file that then goes unused.
+  -->
+  <link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesizes="100vw"
+        imagesrcset="img/{{page.hero}}-760.webp 760w, img/{{page.hero}}-1200.webp 1200w, img/{{page.hero}}.webp 1920w">
+
+  <link rel="stylesheet" href="css/main.css">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2308080a'/><text x='16' y='23' font-family='Georgia,serif' font-size='20' fill='%23c79a46' text-anchor='middle'>N</text></svg>">
+
+  <!--
+    Only add the `js` class in browsers that support ES modules - those are
+    exactly the browsers that will run main.js. Anywhere else the reveal
+    animations never arm, so the content is visible from the first paint.
+  -->
+  <script>
+    if ('noModule' in HTMLScriptElement.prototype) {
+      document.documentElement.classList.add('js');
+    }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "{{site.brand.name}}",
+    "description": "{{site.brand.description}}",
+    "url": "{{site.brand.url}}",
+    "image": "{{site.brand.url}}/img/og-card.jpg",
+    "servesCuisine": "Modern European",
+    "priceRange": "€€€",
+    "telephone": "{{site.contact.phoneDisplay}}",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{site.contact.addressLine1}}",
+      "addressLocality": "Lisbon",
+      "postalCode": "1100-062",
+      "addressCountry": "PT"
+    },
+    "openingHours": ["Tu-Th 18:00-23:00", "Fr-Sa 18:00-01:00", "Su 12:30-16:00"],
+    "acceptsReservations": "True",
+    "hasMenu": "{{site.brand.url}}/menu.html"
+  }
+  </script>

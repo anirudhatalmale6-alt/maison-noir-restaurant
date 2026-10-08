@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Menu | Maison Noir, Lisbon</title>
+  <meta name="description" content="The nine-course tasting menu and this week&#39;s a la carte at Maison Noir. Seasonal modern European cooking, vegetarian and vegan options on every course.">
+  <meta name="theme-color" content="#08080a">
+  <link rel="canonical" href="https://example.com/menu.html">
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Maison Noir">
+  <meta property="og:title" content="Menu | Maison Noir, Lisbon">
+  <meta property="og:description" content="The nine-course tasting menu and this week&#39;s a la carte at Maison Noir. Seasonal modern European cooking, vegetarian and vegan options on every course.">
+  <meta property="og:url" content="https://example.com/menu.html">
+  <meta property="og:image" content="https://example.com/img/og-card.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!--
+    The two font files the first screen actually uses are preloaded. The
+    latin-ext pair is left to load normally: preloading a file most visitors
+    never need is a classic way to make a Lighthouse score worse, not better.
+  -->
+  <link rel="preload" href="fonts/bodoni-moda-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!--
+    Preload the hero image at the same widths the markup offers, so the
+    browser starts fetching it while the stylesheet is still in flight rather
+    than after it. This is the page's Largest Contentful Paint element, so it
+    is the one request worth jumping the queue.
+
+    WebP only: every browser that understands `imagesrcset` also understands
+    WebP, so there is no case where this preloads a file that then goes unused.
+  -->
+  <link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesizes="100vw"
+        imagesrcset="img/hero-3-760.webp 760w, img/hero-3-1200.webp 1200w, img/hero-3.webp 1920w">
+
+  <link rel="stylesheet" href="css/main.css">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2308080a'/><text x='16' y='23' font-family='Georgia,serif' font-size='20' fill='%23c79a46' text-anchor='middle'>N</text></svg>">
+
+  <!--
+    Only add the `js` class in browsers that support ES modules - those are
+    exactly the browsers that will run main.js. Anywhere else the reveal
+    animations never arm, so the content is visible from the first paint.
+  -->
+  <script>
+    if ('noModule' in HTMLScriptElement.prototype) {
+      document.documentElement.classList.add('js');
+    }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Maison Noir",
+    "description": "A candlelit twenty-eight seat dining room serving a seasonal modern European tasting menu in the heart of the old quarter.",
+    "url": "https://example.com",
+    "image": "https://example.com/img/og-card.jpg",
+    "servesCuisine": "Modern European",
+    "priceRange": "€€€",
+    "telephone": "+351 21 045 9920",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "17 Rue des Lanternes",
+      "addressLocality": "Lisbon",
+      "postalCode": "1100-062",
+      "addressCountry": "PT"
+    },
+    "openingHours": ["Tu-Th 18:00-23:00", "Fr-Sa 18:00-01:00", "Su 12:30-16:00"],
+    "acceptsReservations": "True",
+    "hasMenu": "https://example.com/menu.html"
+  }
+  </script>
+
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="header" data-header>
+    <div class="header__inner">
+      <!--
+        No aria-label here on purpose. An override that does not contain the
+        visible words ("Maison Noir / Est. 2014") breaks voice control: the
+        user says what they can see and nothing matches.
+      -->
+      <a class="brand" href="index.html">
+        <span class="brand__name">Maison Noir</span>
+        <span class="brand__tag">Est. 2014</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        
+        <a class="nav__link" href="index.html">Home</a>
+        
+        <a class="nav__link is-active" href="menu.html" aria-current="page">Menu</a>
+        
+        <a class="nav__link" href="about.html">About</a>
+        
+        <a class="nav__link" href="contact.html">Contact</a>
+        
+      </nav>
+
+      <div class="header__actions">
+        <a class="header__phone" href="tel:+351210459920">+351 21 045 9920</a>
+        <a class="btn header__cta" href="contact.html">Reserve</a>
+        <button class="burger" type="button" data-burger aria-expanded="false" aria-controls="drawer" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile drawer. Hidden from assistive tech until it opens. -->
+  <div class="drawer" id="drawer" data-drawer role="dialog" aria-modal="true" aria-label="Site menu">
+    <div class="drawer__top">
+      <span class="brand__name">Maison Noir</span>
+      <button class="drawer__close" type="button" data-drawer-close aria-label="Close menu">&times;</button>
+    </div>
+
+    <nav class="drawer__nav" aria-label="Mobile">
+      
+      <a class="drawer__link" href="index.html">
+        <span class="drawer__index">01</span>
+        <span>Home</span>
+      </a>
+      
+      <a class="drawer__link is-active" href="menu.html">
+        <span class="drawer__index">02</span>
+        <span>Menu</span>
+      </a>
+      
+      <a class="drawer__link" href="about.html">
+        <span class="drawer__index">03</span>
+        <span>About</span>
+      </a>
+      
+      <a class="drawer__link" href="contact.html">
+        <span class="drawer__index">04</span>
+        <span>Contact</span>
+      </a>
+      
+    </nav>
+
+    <div class="drawer__foot">
+      <a href="tel:+351210459920">+351 21 045 9920</a>
+      <span>17 Rue des Lanternes, Old Quarter, Lisbon 1100-062</span>
+      <a class="btn btn--block" href="contact.html">Reserve a table</a>
+    </div>
+  </div>
+
+
+<main id="main">
+
+  <section class="page-head">
+    <div class="page-head__bg">
+      <picture>
+        <source type="image/webp" sizes="100vw" srcset="img/hero-3-760.webp 760w, img/hero-3-1200.webp 1200w, img/hero-3.webp 1920w">
+        <source type="image/jpeg" sizes="100vw" srcset="img/hero-3-760.jpg 760w, img/hero-3-1200.jpg 1200w, img/hero-3.jpg 1920w">
+        <img src="img/hero-3.jpg" alt="" width="1920" height="1080" fetchpriority="high" decoding="sync">
+      </picture>
+    </div>
+    <div class="page-head__inner">
+      <nav aria-label="Breadcrumb">
+        <ol class="crumbs">
+          <li><a href="index.html">Home</a></li>
+          <li aria-current="page">Menu</li>
+        </ol>
+      </nav>
+      <p class="eyebrow">The carte</p>
+      <h1 class="page-head__title">Menu</h1>
+      <p class="page-head__intro">The tasting menu changes with the market. The à la carte below is what is on this week. Everything is cooked to order, so please tell us about allergies when you book rather than when you sit down.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <!--
+        Filter bar. Hidden by CSS until the script runs, so a visitor without
+        JavaScript sees the whole menu rather than a row of dead buttons.
+      -->
+      <div class="menu-filters" data-menu-filters role="group" aria-label="Filter by course">
+        <button class="menu-filter" type="button" data-filter="all" aria-pressed="true">All</button>
+        
+        <button class="menu-filter" type="button" data-filter="tasting" aria-pressed="false">Tasting menu</button>
+        
+        <button class="menu-filter" type="button" data-filter="starters" aria-pressed="false">To begin</button>
+        
+        <button class="menu-filter" type="button" data-filter="mains" aria-pressed="false">Main courses</button>
+        
+        <button class="menu-filter" type="button" data-filter="desserts" aria-pressed="false">Desserts</button>
+        
+        <button class="menu-filter" type="button" data-filter="bar" aria-pressed="false">At the bar</button>
+        
+      </div>
+
+      
+      <section class="course" id="tasting" data-course="tasting">
+        <div class="course__head">
+          <div>
+            <p class="eyebrow" data-reveal="fade">Course 01</p>
+            <h2 data-reveal>Tasting menu</h2>
+          </div>
+          <p class="course__note" data-reveal data-reveal-delay="100">Served to the whole table. Nine courses, around three hours. Wine pairing 65.</p>
+        </div>
+
+        <div class="course__list">
+          
+          <article class="dish" data-reveal data-reveal-delay="00">
+            <div class="dish__top">
+              <h3 class="dish__name">The full tasting menu</h3>
+              <span class="dish__leader" aria-hidden="true"></span>
+              <span class="dish__price">110</span>
+            </div>
+            <p class="dish__desc">Nine courses, built from whatever the market gave us that morning. Vegetarian version available with notice.</p>
+            <div class="dish__tags">
+              <span class="tag tag--signature">Signature</span>
+              
+            </div>
+          </article>
+          
+          <article class="dish" data-reveal data-reveal-delay="10">
+            <div class="dish__top">
+              <h3 class="dish__name">The short menu</h3>
+              <span class="dish__leader" aria-hidden="true"></span>
+              <span class="dish__price">72</span>
+            </div>
+            <p class="dish__desc">Five courses, served Tuesday to Thursday only, finished inside two hours.</p>
+            <div class="dish__tags">
+              
+              
+            </div>
+          </article>
+          
+          <article class="dish" data-reveal data-reveal-delay="20">
+            <div class="dish__top">
+              <h3 class="dish__name">Wine pairing</h3>
+              <span class="dish__leader" aria-hidden="true"></span>
+              <span class="dish__price">65</span>
+            </div>
+            <p class="dish__desc">A glass with each course, poured by the sommelier, leaning to small growers.</p>
+            <div class="dish__tags">
+              
+              
+            </div>
+          </article>
+          
+          <article class="dish" data-reveal data-reveal-delay="30">
+            <div class="dish__top">
+              <h3 class="dish__name">Non-alcoholic pairing</h3>
+              <span class="dish__leader" aria-hidden="true"></span>
+              <span class="dish__price">38</span>
+            </div>
+            <p class="dish__desc">House ferments, infusions and pressed juices, built course by course.</p>
+            <div class="dish__tags">
+              
+              <span class="tag">vg</span>
+            </div>
+          </article>
+          
+        </div>
+      </section>
+      
+      <section class="course" id="starters" data-course="starters">
+        <div class="course__head">
+          <div>
+            <p class="eyebrow" data-reveal="fade">Course 02</p>
+            <h2 data-reveal>To begin</h2>
+          </div>
+          <p class="course__note" data-reveal data-reveal-delay="100">Small plates, meant for the first half hour.</p>
+        </div>
+
+        <div class="course__list">
+          
+          <article class="dish" data-reveal data-reveal-delay="00">
+            <div class="dish__top">
+              <h3 class="dish__name">Scallop, cauliflower, caviar</h3>
+              <span class="dish__leader" aria-hidden="true"></span>
+              <span class="dish__price">24</span>
+            </div>
+            <p class="dish__desc">Hand-dived scallop, browned butter cauliflower purée, oscietra.</p>
+            <div class="dish__tags">
+              <span class="tag tag--signature">Signature</span>
+              <span class="tag">gf</span>
+            </div>
+          </article>
+          
+          <article class="dish" data-reveal data-reveal-delay="10">
+            <div class="dish__top">
+              <h3 class="dish__name">Burrata, tomato confit, basil</h3>
+              <span class="dish__leader" aria-hidden="true"></span>
+              <span class="dish__price">18</span>
+            </div>
+            <p class="dish__desc">Puglian burrata, heirloom tomatoes slow-cooked in their own juice, basil oil.</p>
+            <div class="dish__tags">
+              
+              <span class="tag">v</span><span class="tag">gf</span>
+            </div>
+          </article>
+          
+          <article class="dish" data-reveal data-reveal-delay="20">
+            <div class="dish__top">
+              <h3 class="dish__name">Beef tartare, oyster, nasturtium</h3>
+              <span class="dish__leader" aria-hidden="true"></span>
+              <span class="dish__price">21</span>
+            </div>
+            <p class="dish__desc">Hand-cut sirloin, oyster emulsion, pickled shallot, nasturtium leaf.</p>
+            <div class="dish__tags">
+              
+              
+            </div>
+          </article>
+          
+          <article class="dish" data-reveal data-reveal-delay="30">
+            <div class="dish__top">
+              <h3 class="dish__name">Charred leek, hazelnut, sherry</h3>
+              <span class="dish__leader" aria-hidden="true"></span>
+              <span class="dish__price">16</span>
+            </div>
+            <p class="dish__desc">Leeks burnt over fire, toasted hazelnut cream, aged sherry vinegar.</p>
+            <div class="dish__tags">
+              
+              <span class="tag">vg</span>
+            </div>
+          </article>
+          
+          <article class="dish" data-reveal data-reveal-delay="40">
+            <div class="dish__top">
+              <h3 class="dish__name">Sourdough and cultured butter</h3>
+              <span class="dish__leader" aria-hidden="true"></span>
+              <span class="dish__price">7</span>
+            </div>
+            <p class="dish__desc">Baked each morning in the kitchen. The butter is churned here too.</p>
+            <div class="dish__tags">
+              
+              <span class="tag">v</span>
+            </div>
+          </article>
+          
+        </div>
+      </section>
+      
+      <section class="course" id="mains" data-course="mains">
+        <div class="course__head">
+          <div>
+            <p class="eyebrow" data-reveal="fade">Course 03</p>
+            <h2 data-reveal>Main courses</h2>
+          </div>
+          <p class="course__note" data-reveal data-reveal-delay="100">Cooked over charcoal unless stated otherwise.</p>
+        </div>
+
+        <div class="course__list">
+          
+          <article class="dish" data-reveal data-reveal-delay="00">
+            <div class="dish__top">
+              <h3 class="dish__name">Lamb shoulder, onion, pedro ximénez</h3>
+              <span class="dish__leader" aria-hidden="true"></span>
+              <span class="dish__price">38</span>
+            </div>
+            <p class="dish__desc">Nine hours in a low oven, charred onion petals, sherry reduction.</p>
+            <div class="dish__tags">
+              <span class="tag tag--signature">Signature</span>
+              <span class="tag">gf</span>
+            </div>
+          </article>
+          
+          <article class="dish" data-reveal data-reveal-delay="10">
+            <div class="dish__top">
+              <h3 class="dish__name">Duck breast, cherry, parsnip</h3>
+              <span class="dish__leader" aria-hidden="true"></span>
+              <span class="dish__price">36</span>
+            </div>
+            <p class="dish__desc">Aged on the bone for eight days, morello cherry gastrique, parsnip purée.</p>
+            <div class="dish__tags">
+              
+              <span class="tag">gf</span>
+            </div>
+          </article>
+          
+          <article class="dish" data-reveal data-reveal-delay="20">
+            <div class="dish__top">
+              <h3 class="dish__name">Turbot, mussel, sea herbs</h3>
+              <span class="dish__leader" aria-hidden="true"></span>
+              <span class="dish__price">42</span>
+            </div>
+            <p class="dish__desc">On the bone over charcoal, mussel and saffron broth, coastal herbs.</p>
+            <div class="dish__tags">
+              
+              <span class="tag">gf</span>
+            </div>
+          </article>
+          
+          <article class="dish" data-reveal data-reveal-delay="30">
+            <div class="dish__top">
+              <h3 class="dish__name">Celeriac, truffle, walnut</h3>
+              <span class="dish__leader" aria-hidden="true"></span>
+              <span class="dish__price">28</span>
+            </div>
+            <p class="dish__desc">Whole celeriac baked in salt crust, winter truffle, walnut milk.</p>
+            <div class="dish__tags">
+              
+              <span class="tag">v</span><span class="tag">gf</span>
+            </div>
+          </article>
+          
+          <article class="dish" data-reveal data-reveal-delay="40">
+            <div class="dish__top">
+              <h3 class="dish__name">Dry-aged sirloin, bone marrow</h3>
+              <span class="dish__leader" aria-hidden="true"></span>
+              <span class="dish__price">76</span>
+            </div>
+            <p class="dish__desc">Forty-day aged, charred leek, bone marrow jus. For two, carved at the table.</p>
+            <div class="dish__tags">
+              
+              <span class="tag">gf</span>
+            </div>
+          </article>
+          
+        </div>
+      </section>
+      
+      <section class="course" id="desserts" data-course="desserts">
+        <div class="course__head">
+          <div>
+            <p class="eyebrow" data-reveal="fade">Course 04</p>
+            <h2 data-reveal>Desserts</h2>
+          </div>
+          <p class="course__note" data-reveal data-reveal-delay="100">The pastry section runs on its own clock. Please allow fifteen minutes.</p>
+        </div>
+
+        <div class="course__list">
+          
+          <article class="dish" data-reveal data-reveal-delay="00">
+            <div class="dish__top">
+              <h3 class="dish__name">Chocolate, olive oil, salt</h3>
+              <span class="dish__leader" aria-hidden="true"></span>
+              <span class="dish__price">16</span>
+            </div>
+            <p class="dish__desc">Seventy percent ganache tart, Alentejo olive oil, crème fraîche.</p>
+            <div class="dish__tags">
+              <span class="tag tag--signature">Signature</span>
+              <span class="tag">v</span>
+            </div>
+          </article>
+          
+          <article class="dish" data-reveal data-reveal-delay="10">
+            <div class="dish__top">
+              <h3 class="dish__name">Crème brûlée, bourbon vanilla</h3>
+              <span class="dish__leader" aria-hidden="true"></span>
+              <span class="dish__price">13</span>
+            </div>
+            <p class="dish__desc">Set in the morning, burnt to order, nothing else on the plate.</p>
+            <div class="dish__tags">
+              
+              <span class="tag">v</span><span class="tag">gf</span>
+            </div>
+          </article>
+          
+          <article class="dish" data-reveal data-reveal-delay="20">
+            <div class="dish__top">
+              <h3 class="dish__name">Pear, verbena, buttermilk</h3>
+              <span class="dish__leader" aria-hidden="true"></span>
+              <span class="dish__price">14</span>
+            </div>
+            <p class="dish__desc">Poached pear, lemon verbena granita, buttermilk ice cream.</p>
+            <div class="dish__tags">
+              
+              <span class="tag">v</span><span class="tag">gf</span>
+            </div>
+          </article>
+          
+          <article class="dish" data-reveal data-reveal-delay="30">
+            <div class="dish__top">
+              <h3 class="dish__name">Cheese from the trolley</h3>
+              <span class="dish__leader" aria-hidden="true"></span>
+              <span class="dish__price">19</span>
+            </div>
+            <p class="dish__desc">Five from the Iberian peninsula and France, quince, sourdough crackers.</p>
+            <div class="dish__tags">
+              
+              <span class="tag">v</span>
+            </div>
+          </article>
+          
+        </div>
+      </section>
+      
+      <section class="course" id="bar" data-course="bar">
+        <div class="course__head">
+          <div>
+            <p class="eyebrow" data-reveal="fade">Course 05</p>
+            <h2 data-reveal>At the bar</h2>
+          </div>
+          <p class="course__note" data-reveal data-reveal-delay="100">Twelve stools, no reservation needed, served until close.</p>
+        </div>
+
+        <div class="course__list">
+          
+          <article class="dish" data-reveal data-reveal-delay="00">
+            <div class="dish__top">
+              <h3 class="dish__name">Smoked orange old fashioned</h3>
+              <span class="dish__leader" aria-hidden="true"></span>
+              <span class="dish__price">14</span>
+            </div>
+            <p class="dish__desc">Rye, burnt orange oil, house bitters, one large block of ice.</p>
+            <div class="dish__tags">
+              
+              <span class="tag">vg</span>
+            </div>
+          </article>
+          
+          <article class="dish" data-reveal data-reveal-delay="10">
+            <div class="dish__top">
+              <h3 class="dish__name">Verbena gimlet</h3>
+              <span class="dish__leader" aria-hidden="true"></span>
+              <span class="dish__price">13</span>
+            </div>
+            <p class="dish__desc">Gin, verbena cordial from the garden, lime, served very cold.</p>
+            <div class="dish__tags">
+              
+              <span class="tag">vg</span>
+            </div>
+          </article>
+          
+          <article class="dish" data-reveal data-reveal-delay="20">
+            <div class="dish__top">
+              <h3 class="dish__name">Vermouth and olives</h3>
+              <span class="dish__leader" aria-hidden="true"></span>
+              <span class="dish__price">9</span>
+            </div>
+            <p class="dish__desc">House vermouth on ice, Gordal olives, orange twist.</p>
+            <div class="dish__tags">
+              
+              <span class="tag">vg</span>
+            </div>
+          </article>
+          
+          <article class="dish" data-reveal data-reveal-delay="30">
+            <div class="dish__top">
+              <h3 class="dish__name">Wine by the glass</h3>
+              <span class="dish__leader" aria-hidden="true"></span>
+              <span class="dish__price">8</span>
+            </div>
+            <p class="dish__desc">Fourteen open at any time. Ask what the sommelier is excited about.</p>
+            <div class="dish__tags">
+              
+              <span class="tag">vg</span>
+            </div>
+          </article>
+          
+        </div>
+      </section>
+      
+
+      <p class="menu-legend">
+        
+        <span><strong>v</strong>Vegetarian</span>
+        
+        <span><strong>vg</strong>Vegan</span>
+        
+        <span><strong>gf</strong>Gluten free</span>
+        
+        <span>All prices in euro, service included.</span>
+      </p>
+    </div>
+  </section>
+
+    <section class="cta-band">
+      <div class="cta-band__bg" data-parallax="60">
+        <picture>
+          <source srcset="img/gallery-1.webp" type="image/webp">
+          <img src="img/gallery-1.jpg" alt="" width="800" height="1000" loading="lazy" decoding="async">
+        </picture>
+      </div>
+
+      <div class="cta-band__inner">
+        <p class="eyebrow eyebrow--center" data-reveal="fade">Reservations</p>
+        <h2 class="cta-band__title" data-reveal>Tables open thirty days ahead</h2>
+        <p class="lead" data-reveal data-reveal-delay="80">
+          The room holds twenty-eight. Friday and Saturday go quickly, and the
+          chef's counter is released on the first of each month.
+        </p>
+        <div class="cta-band__actions" data-reveal data-reveal-delay="160">
+          <a class="btn" href="contact.html">Reserve a table</a>
+          <a class="btn btn--ghost" href="tel:+351210459920">+351 21 045 9920</a>
+        </div>
+        <p class="cta-band__note" data-reveal data-reveal-delay="220">
+          Walk-ins welcome at the bar, every service.
+        </p>
+      </div>
+    </section>
+
+
+</main>
+
+  <footer class="footer">
+    <div class="container container--wide">
+      <div class="footer__grid">
+        <div>
+          <p class="footer__brand-name">Maison Noir</p>
+          <p class="footer__blurb">A candlelit twenty-eight seat dining room serving a seasonal modern European tasting menu in the heart of the old quarter.</p>
+        </div>
+
+        <div>
+          <p class="footer__heading">Find us</p>
+          <div class="footer__list">
+            <span>17 Rue des Lanternes</span>
+            <span>Old Quarter, Lisbon 1100-062</span>
+            <a href="tel:+351210459920">+351 21 045 9920</a>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer__heading">Hours</p>
+          <div class="footer__list">
+            
+            <span>Tuesday–Thursday &middot; 18:00–23:00</span>
+            
+            <span>Friday–Saturday &middot; 18:00–01:00</span>
+            
+            <span>Sunday &middot; 12:30–16:00 lunch only</span>
+            
+            <span>Monday &middot; Closed</span>
+            
+          </div>
+        </div>
+
+        <div>
+          <p class="footer__heading">Explore</p>
+          <div class="footer__list">
+            
+            <a href="index.html">Home</a>
+            
+            <a href="menu.html">Menu</a>
+            
+            <a href="about.html">About</a>
+            
+            <a href="contact.html">Contact</a>
+            
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>&copy; <span data-year>2026</span> Maison Noir. All rights reserved.</span>
+        <div class="footer__social">
+          
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+          
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
+          
+          <a href="https://tripadvisor.com" target="_blank" rel="noopener noreferrer">TripAdvisor</a>
+          
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" data-to-top aria-label="Back to top">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M8 14V2M8 2 2.5 7.5M8 2l5.5 5.5" stroke="currentColor" stroke-width="1.3"/>
+    </svg>
+  </button>
+
+  <script type="module" src="js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!-- page {
+  "id": "menu",
+  "canonical": "menu.html",
+  "title": "Menu | Maison Noir, Lisbon",
+  "description": "The nine-course tasting menu and this week's a la carte at Maison Noir. Seasonal modern European cooking, vegetarian and vegan options on every course.",
+  "hero": "hero-3"
+} -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{> head}}
+</head>
+<body>
+{{> header}}
+
+<main id="main">
+
+  <section class="page-head">
+    <div class="page-head__bg">
+      <picture>
+        <source type="image/webp" sizes="100vw" srcset="img/hero-3-760.webp 760w, img/hero-3-1200.webp 1200w, img/hero-3.webp 1920w">
+        <source type="image/jpeg" sizes="100vw" srcset="img/hero-3-760.jpg 760w, img/hero-3-1200.jpg 1200w, img/hero-3.jpg 1920w">
+        <img src="img/hero-3.jpg" alt="" width="1920" height="1080" fetchpriority="high" decoding="sync">
+      </picture>
+    </div>
+    <div class="page-head__inner">
+      <nav aria-label="Breadcrumb">
+        <ol class="crumbs">
+          <li><a href="index.html">Home</a></li>
+          <li aria-current="page">Menu</li>
+        </ol>
+      </nav>
+      <p class="eyebrow">{{menu.eyebrow}}</p>
+      <h1 class="page-head__title">{{menu.title}}</h1>
+      <p class="page-head__intro">{{menu.intro}}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <!--
+        Filter bar. Hidden by CSS until the script runs, so a visitor without
+        JavaScript sees the whole menu rather than a row of dead buttons.
+      -->
+      <div class="menu-filters" data-menu-filters role="group" aria-label="Filter by course">
+        <button class="menu-filter" type="button" data-filter="all" aria-pressed="true">All</button>
+        {{#each menu.sections}}
+        <button class="menu-filter" type="button" data-filter="{{id}}" aria-pressed="false">{{name}}</button>
+        {{/each}}
+      </div>
+
+      {{#each menu.sections}}
+      <section class="course" id="{{id}}" data-course="{{id}}">
+        <div class="course__head">
+          <div>
+            <p class="eyebrow" data-reveal="fade">Course {{@padded}}</p>
+            <h2 data-reveal>{{name}}</h2>
+          </div>
+          <p class="course__note" data-reveal data-reveal-delay="100">{{note}}</p>
+        </div>
+
+        <div class="course__list">
+          {{#each items}}
+          <article class="dish" data-reveal data-reveal-delay="{{@index}}0">
+            <div class="dish__top">
+              <h3 class="dish__name">{{name}}</h3>
+              <span class="dish__leader" aria-hidden="true"></span>
+              <span class="dish__price">{{price}}</span>
+            </div>
+            <p class="dish__desc">{{desc}}</p>
+            <div class="dish__tags">
+              {{#if signature}}<span class="tag tag--signature">Signature</span>{{/if}}
+              {{#each tags}}<span class="tag">{{@value}}</span>{{/each}}
+            </div>
+          </article>
+          {{/each}}
+        </div>
+      </section>
+      {{/each}}
+
+      <p class="menu-legend">
+        {{#each menu.legend}}
+        <span><strong>{{code}}</strong>{{label}}</span>
+        {{/each}}
+        <span>All prices in euro, service included.</span>
+      </p>
+    </div>
+  </section>
+
+{{> cta-band}}
+
+</main>
+
+{{> footer}}
+</body>
+</html>

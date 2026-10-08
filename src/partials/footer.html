@@ -1,0 +1,54 @@
+  <footer class="footer">
+    <div class="container container--wide">
+      <div class="footer__grid">
+        <div>
+          <p class="footer__brand-name">{{site.brand.name}}</p>
+          <p class="footer__blurb">{{site.brand.description}}</p>
+        </div>
+
+        <div>
+          <p class="footer__heading">Find us</p>
+          <div class="footer__list">
+            <span>{{site.contact.addressLine1}}</span>
+            <span>{{site.contact.addressLine2}}</span>
+            <a href="tel:{{site.contact.phoneHref}}">{{site.contact.phoneDisplay}}</a>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer__heading">Hours</p>
+          <div class="footer__list">
+            {{#each site.hours}}
+            <span>{{days}} &middot; {{time}}</span>
+            {{/each}}
+          </div>
+        </div>
+
+        <div>
+          <p class="footer__heading">Explore</p>
+          <div class="footer__list">
+            {{#each nav}}
+            <a href="{{href}}">{{label}}</a>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>&copy; <span data-year>{{year}}</span> {{site.brand.name}}. All rights reserved.</span>
+        <div class="footer__social">
+          {{#each site.social}}
+          <a href="{{url}}" target="_blank" rel="noopener noreferrer">{{label}}</a>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" data-to-top aria-label="Back to top">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M8 14V2M8 2 2.5 7.5M8 2l5.5 5.5" stroke="currentColor" stroke-width="1.3"/>
+    </svg>
+  </button>
+
+  <script type="module" src="js/main.js"></script>

@@ -1,0 +1,69 @@
+@use '../abstracts' as *;
+
+// ---------------------------------------------------------------------------
+// Scroll reveal
+//
+// The hidden state is scoped to `.js` and to motion-safe. That ordering
+// matters: if the script never runs, or the visitor has reduced motion on,
+// the content is simply visible. Content must never depend on JavaScript to
+// become readable.
+// ---------------------------------------------------------------------------
+
+@include motion-safe {
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition:
+      opacity $dur-slow $ease-out,
+      transform $dur-slow $ease-out;
+    // honours data-reveal-delay, set per element in the markup
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .js [data-reveal='fade'] {
+    transform: none;
+  }
+
+  .js [data-reveal='left'] {
+    transform: translateX(-1.75rem);
+  }
+
+  .js [data-reveal='right'] {
+    transform: translateX(1.75rem);
+  }
+
+  .js [data-reveal='scale'] {
+    transform: scale(0.96);
+  }
+
+  .js [data-reveal].is-revealed {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// Letter-by-letter rise for a page title. The spans are produced by
+// js/modules/reveal.js so the original heading text stays intact for
+// screen readers and for search engines.
+.split-line {
+  display: block;
+  overflow: hidden;
+}
+
+.split-line__inner {
+  display: block;
+  transform: translateY(105%);
+  transition: transform $dur-slow $ease-out;
+  transition-delay: var(--line-delay, 0ms);
+}
+
+.is-revealed .split-line__inner {
+  transform: translateY(0);
+}
+
+@include motion-reduce {
+  .split-line__inner {
+    transform: none;
+    transition: none;
+  }
+}

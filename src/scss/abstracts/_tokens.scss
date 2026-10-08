@@ -1,0 +1,91 @@
+// ---------------------------------------------------------------------------
+// Design tokens
+//
+// Every colour, size and timing used anywhere in the build comes from here.
+// Rebranding the site for another venue (or another vertical entirely) should
+// mean editing this file and the JSON in /data, and nothing else.
+// ---------------------------------------------------------------------------
+
+// Palette ------------------------------------------------------------------
+// A deliberately short list. Three neutrals, one accent. Restraint is what
+// reads as expensive; a fifth colour is almost always a mistake here.
+
+$ink-900: #08080a; // page background
+$ink-800: #0e0e11; // raised surface
+$ink-700: #15151a; // cards
+$ink-600: #1e1e24; // hairlines on dark surfaces
+
+$ivory: #f2ede4; // primary text
+$ivory-dim: #cfc8bc; // secondary text
+$muted: #8b857b; // captions, metadata
+
+$brass: #c79a46; // the single accent
+$brass-light: #e6c682;
+$brass-dark: #8e6c2b;
+
+$line: rgba(242, 237, 228, 0.12);
+$line-strong: rgba(242, 237, 228, 0.22);
+
+// Typography ---------------------------------------------------------------
+
+$font-display: 'Bodoni Moda', 'Didot', 'Times New Roman', serif;
+$font-body: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+
+// Fluid type: every size interpolates between the mobile and desktop value
+// across the 360px → 1440px viewport range, so nothing needs a breakpoint.
+$step--2: clamp(0.69rem, 0.67rem + 0.09vw, 0.75rem);
+$step--1: clamp(0.8rem, 0.77rem + 0.14vw, 0.88rem);
+$step-0: clamp(1rem, 0.96rem + 0.18vw, 1.06rem);
+$step-1: clamp(1.2rem, 1.11rem + 0.4vw, 1.45rem);
+$step-2: clamp(1.44rem, 1.28rem + 0.73vw, 1.95rem);
+$step-3: clamp(1.73rem, 1.44rem + 1.28vw, 2.62rem);
+$step-4: clamp(2.07rem, 1.58rem + 2.17vw, 3.53rem);
+$step-5: clamp(2.49rem, 1.68rem + 3.6vw, 4.75rem);
+$step-6: clamp(2.99rem, 1.7rem + 5.72vw, 6.4rem);
+
+// Spacing ------------------------------------------------------------------
+
+$space-3xs: 0.25rem;
+$space-2xs: 0.5rem;
+$space-xs: 0.75rem;
+$space-sm: 1rem;
+$space-md: 1.5rem;
+$space-lg: 2.25rem;
+$space-xl: 3.5rem;
+$space-2xl: clamp(4rem, 2.5rem + 6.5vw, 7.5rem);
+$space-3xl: clamp(5.5rem, 3rem + 10vw, 11rem);
+
+// Layout -------------------------------------------------------------------
+
+$measure: 62ch; // comfortable reading width
+$container: 1280px;
+$container-wide: 1560px;
+$container-narrow: 860px;
+$gutter: clamp(1.25rem, 0.6rem + 2.8vw, 3rem);
+
+$radius-sm: 2px;
+$radius-md: 4px;
+
+// Motion -------------------------------------------------------------------
+// Slow, long eases. Fast bouncy motion reads as playful, which is the wrong
+// register for a fine dining room.
+
+$ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+$ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+$dur-fast: 240ms;
+$dur-med: 480ms;
+$dur-slow: 900ms;
+
+// Breakpoints --------------------------------------------------------------
+
+$bp-sm: 480px;
+$bp-md: 720px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;
+
+// Depth --------------------------------------------------------------------
+
+$z-base: 1;
+$z-raised: 10;
+$z-header: 100;
+$z-drawer: 200;

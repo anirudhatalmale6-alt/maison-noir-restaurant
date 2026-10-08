@@ -1,0 +1,41 @@
+{
+  "eyebrow": "Guests",
+  "title": "What people say after",
+  "items": [
+    {
+      "quote": "We sat at the counter and watched every course come together. Three hours felt like forty minutes. The lamb is still the best thing I ate all year.",
+      "name": "Helena Marques",
+      "meta": "Dined in March",
+      "source": "Google",
+      "rating": 5
+    },
+    {
+      "quote": "Booked it for an anniversary and they remembered without being asked. Quiet, dark, genuinely romantic, and the wine pairing was worth every cent.",
+      "name": "Tomás Ferreira",
+      "meta": "Dined in February",
+      "source": "TripAdvisor",
+      "rating": 5
+    },
+    {
+      "quote": "I have sat through a lot of tasting menus that are mostly theatre. This one is mostly cooking. Nothing on the plate was there for the photograph.",
+      "name": "Claire Dubois",
+      "meta": "Dined in April",
+      "source": "Google",
+      "rating": 5
+    },
+    {
+      "quote": "Vegetarian menu with no sense of being an afterthought. The cauliflower course was the one everyone at the table talked about on the way home.",
+      "name": "Priya Raghavan",
+      "meta": "Dined in January",
+      "source": "OpenTable",
+      "rating": 5
+    },
+    {
+      "quote": "Walked in on a Thursday with no booking, got two stools at the bar, and ended up staying until they turned the lights up. Perfect night.",
+      "name": "Martin Keogh",
+      "meta": "Dined in May",
+      "source": "Google",
+      "rating": 4
+    }
+  ]
+}

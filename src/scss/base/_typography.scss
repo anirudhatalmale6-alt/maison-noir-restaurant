@@ -1,0 +1,97 @@
+@use '../abstracts' as *;
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: $font-display;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: $step-5;
+}
+h2 {
+  font-size: $step-4;
+}
+h3 {
+  font-size: $step-2;
+}
+h4 {
+  font-size: $step-1;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+// Utility type -------------------------------------------------------------
+
+.eyebrow {
+  @include eyebrow;
+  display: flex;
+  align-items: center;
+  gap: $space-xs;
+
+  // the short brass rule that precedes every label
+  &::before {
+    content: '';
+    width: clamp(1.5rem, 4vw, 2.75rem);
+    height: 1px;
+    background: currentcolor;
+    flex: none;
+  }
+
+  &--center {
+    justify-content: center;
+
+    &::after {
+      content: '';
+      width: clamp(1.5rem, 4vw, 2.75rem);
+      height: 1px;
+      background: currentcolor;
+      flex: none;
+    }
+  }
+}
+
+.lead {
+  font-size: $step-1;
+  line-height: 1.5;
+  color: $ivory-dim;
+  max-width: $measure;
+}
+
+.prose {
+  max-width: $measure;
+  color: $ivory-dim;
+
+  p + p {
+    margin-top: $space-md;
+  }
+}
+
+.text-muted {
+  color: $muted;
+}
+
+.text-accent {
+  color: $brass;
+}
+
+// Italic display run used inside headlines, e.g. "one <em>long</em> evening"
+h1 em,
+h2 em,
+h3 em,
+.display-em {
+  font-style: italic;
+  color: $brass-light;
+}
+
+.visually-hidden {
+  @include visually-hidden;
+}

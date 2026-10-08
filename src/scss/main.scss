@@ -1,0 +1,31 @@
+// ---------------------------------------------------------------------------
+// Maison Noir - stylesheet entry point
+//
+// Order matters: tokens and mixins first (they emit no CSS), then the base
+// layer, then components. Nothing below uses an ID selector or !important
+// except where a reduced-motion rule has to win, so specificity stays flat
+// and predictable.
+//
+// Compiled by `npm run build` to dist/css/main.css, minified, no source map.
+// ---------------------------------------------------------------------------
+
+@use 'abstracts' as *;
+
+@use 'base/fonts';
+@use 'base/reset';
+@use 'base/typography';
+@use 'base/layout';
+
+@use 'components/button';
+@use 'components/header';
+@use 'components/hero';
+@use 'components/marquee';
+@use 'components/specials';
+@use 'components/reviews';
+@use 'components/story';
+@use 'components/cta';
+@use 'components/menu';
+@use 'components/form';
+@use 'components/page-head';
+@use 'components/footer';
+@use 'components/reveal';

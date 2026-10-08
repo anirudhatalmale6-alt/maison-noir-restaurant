@@ -1,0 +1,69 @@
+@use '../abstracts' as *;
+
+.container {
+  @include container;
+}
+
+.container--wide {
+  @include container($container-wide);
+}
+
+.container--narrow {
+  @include container($container-narrow);
+}
+
+.section {
+  @include section-padding;
+  position: relative;
+}
+
+.section--tight {
+  padding-block: $space-xl;
+}
+
+.section--surface {
+  background: $ink-800;
+}
+
+.section__head {
+  display: grid;
+  gap: $space-md;
+  margin-bottom: $space-xl;
+
+  @include from($bp-lg) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+    align-items: end;
+    gap: $space-2xl;
+  }
+}
+
+.section__title {
+  margin-top: $space-sm;
+}
+
+.section__aside {
+  color: $ivory-dim;
+  max-width: 44ch;
+}
+
+.section__head--center {
+  justify-items: center;
+  text-align: center;
+
+  @include from($bp-lg) {
+    grid-template-columns: minmax(0, 720px);
+    justify-content: center;
+  }
+
+  .section__aside {
+    margin-inline: auto;
+  }
+}
+
+// A thin brass-to-nothing rule used to close sections
+.rule {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(to right, $brass, rgba(199, 154, 70, 0) 60%);
+  opacity: 0.6;
+}

@@ -1,0 +1,79 @@
+{
+  "eyebrow": "The carte",
+  "title": "Menu",
+  "intro": "The tasting menu changes with the market. The à la carte below is what is on this week. Everything is cooked to order, so please tell us about allergies when you book rather than when you sit down.",
+  "legend": [
+    { "code": "v", "label": "Vegetarian" },
+    { "code": "vg", "label": "Vegan" },
+    { "code": "gf", "label": "Gluten free" }
+  ],
+  "sections": [
+    {
+      "id": "tasting",
+      "name": "Tasting menu",
+      "note": "Served to the whole table. Nine courses, around three hours. Wine pairing 65.",
+      "image": "menu-starter",
+      "alt": "Burrata with heirloom tomato confit and basil oil on a stone plate",
+      "items": [
+        { "name": "The full tasting menu", "desc": "Nine courses, built from whatever the market gave us that morning. Vegetarian version available with notice.", "price": "110", "tags": [], "signature": true },
+        { "name": "The short menu", "desc": "Five courses, served Tuesday to Thursday only, finished inside two hours.", "price": "72", "tags": [] },
+        { "name": "Wine pairing", "desc": "A glass with each course, poured by the sommelier, leaning to small growers.", "price": "65", "tags": [] },
+        { "name": "Non-alcoholic pairing", "desc": "House ferments, infusions and pressed juices, built course by course.", "price": "38", "tags": ["vg"] }
+      ]
+    },
+    {
+      "id": "starters",
+      "name": "To begin",
+      "note": "Small plates, meant for the first half hour.",
+      "image": "menu-starter",
+      "alt": "Burrata with heirloom tomato confit and basil oil on a stone plate",
+      "items": [
+        { "name": "Scallop, cauliflower, caviar", "desc": "Hand-dived scallop, browned butter cauliflower purée, oscietra.", "price": "24", "tags": ["gf"], "signature": true },
+        { "name": "Burrata, tomato confit, basil", "desc": "Puglian burrata, heirloom tomatoes slow-cooked in their own juice, basil oil.", "price": "18", "tags": ["v", "gf"] },
+        { "name": "Beef tartare, oyster, nasturtium", "desc": "Hand-cut sirloin, oyster emulsion, pickled shallot, nasturtium leaf.", "price": "21", "tags": [] },
+        { "name": "Charred leek, hazelnut, sherry", "desc": "Leeks burnt over fire, toasted hazelnut cream, aged sherry vinegar.", "price": "16", "tags": ["vg"] },
+        { "name": "Sourdough and cultured butter", "desc": "Baked each morning in the kitchen. The butter is churned here too.", "price": "7", "tags": ["v"] }
+      ]
+    },
+    {
+      "id": "mains",
+      "name": "Main courses",
+      "note": "Cooked over charcoal unless stated otherwise.",
+      "image": "menu-main",
+      "alt": "Pan roasted duck breast with cherry gastrique and parsnip puree",
+      "items": [
+        { "name": "Lamb shoulder, onion, pedro ximénez", "desc": "Nine hours in a low oven, charred onion petals, sherry reduction.", "price": "38", "tags": ["gf"], "signature": true },
+        { "name": "Duck breast, cherry, parsnip", "desc": "Aged on the bone for eight days, morello cherry gastrique, parsnip purée.", "price": "36", "tags": ["gf"] },
+        { "name": "Turbot, mussel, sea herbs", "desc": "On the bone over charcoal, mussel and saffron broth, coastal herbs.", "price": "42", "tags": ["gf"] },
+        { "name": "Celeriac, truffle, walnut", "desc": "Whole celeriac baked in salt crust, winter truffle, walnut milk.", "price": "28", "tags": ["v", "gf"] },
+        { "name": "Dry-aged sirloin, bone marrow", "desc": "Forty-day aged, charred leek, bone marrow jus. For two, carved at the table.", "price": "76", "tags": ["gf"] }
+      ]
+    },
+    {
+      "id": "desserts",
+      "name": "Desserts",
+      "note": "The pastry section runs on its own clock. Please allow fifteen minutes.",
+      "image": "menu-dessert",
+      "alt": "Vanilla bourbon creme brulee with a caramelised sugar crust and berries",
+      "items": [
+        { "name": "Chocolate, olive oil, salt", "desc": "Seventy percent ganache tart, Alentejo olive oil, crème fraîche.", "price": "16", "tags": ["v"], "signature": true },
+        { "name": "Crème brûlée, bourbon vanilla", "desc": "Set in the morning, burnt to order, nothing else on the plate.", "price": "13", "tags": ["v", "gf"] },
+        { "name": "Pear, verbena, buttermilk", "desc": "Poached pear, lemon verbena granita, buttermilk ice cream.", "price": "14", "tags": ["v", "gf"] },
+        { "name": "Cheese from the trolley", "desc": "Five from the Iberian peninsula and France, quince, sourdough crackers.", "price": "19", "tags": ["v"] }
+      ]
+    },
+    {
+      "id": "bar",
+      "name": "At the bar",
+      "note": "Twelve stools, no reservation needed, served until close.",
+      "image": "menu-dessert",
+      "alt": "Vanilla bourbon creme brulee with a caramelised sugar crust and berries",
+      "items": [
+        { "name": "Smoked orange old fashioned", "desc": "Rye, burnt orange oil, house bitters, one large block of ice.", "price": "14", "tags": ["vg"] },
+        { "name": "Verbena gimlet", "desc": "Gin, verbena cordial from the garden, lime, served very cold.", "price": "13", "tags": ["vg"] },
+        { "name": "Vermouth and olives", "desc": "House vermouth on ice, Gordal olives, orange twist.", "price": "9", "tags": ["vg"] },
+        { "name": "Wine by the glass", "desc": "Fourteen open at any time. Ask what the sommelier is excited about.", "price": "8", "tags": ["vg"] }
+      ]
+    }
+  ]
+}

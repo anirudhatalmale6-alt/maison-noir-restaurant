@@ -1,0 +1,23 @@
+{
+  "eyebrow": "Our story",
+  "title": "A small room that never grew",
+  "lead": "We opened in 2014 with eleven tables and a borrowed charcoal grill. Eleven years later there are still eleven tables.",
+  "body": [
+    "The idea has not moved much since the first service. Buy well, cook over fire, write the menu after the market rather than before it, and keep the room small enough that the person who cooked your plate can walk it to the table.",
+    "Almost everything is made here. The bread is baked each morning, the butter is churned in the kitchen, the vermouth and the ferments behind the bar come from the same cellar as the wine. What we cannot make ourselves we buy from about a dozen producers we have worked with since the beginning.",
+    "There is no dress code and no tasting-menu theatre. You will not be told the life story of a carrot. You will be fed properly and left alone to enjoy your evening."
+  ],
+  "image": "about-room",
+  "imageAlt": "An elegant restaurant interior detail with an arched window, a linen table and a single candle",
+  "pullquote": "Write the menu after the market, not before it.",
+  "gallery": [
+    { "image": "gallery-1", "alt": "A sommelier pouring red wine into a glass at a candlelit table", "shape": "tall" },
+    { "image": "gallery-2", "alt": "An open flame grill in a professional kitchen", "shape": "wide" },
+    { "image": "gallery-3", "alt": "A dessert trolley detail under warm light", "shape": "wide" }
+  ],
+  "team": [
+    { "name": "Inês Carvalho", "role": "Head chef and co-owner", "note": "Opened the room in 2014 after eight years in Basque country kitchens." },
+    { "name": "Rafael Nunes", "role": "Head sommelier", "note": "Buys almost exclusively from growers who farm fewer than ten hectares." },
+    { "name": "Beatriz Lopes", "role": "Pastry", "note": "Runs the pastry section and the morning bread bake single-handed." }
+  ]
+}

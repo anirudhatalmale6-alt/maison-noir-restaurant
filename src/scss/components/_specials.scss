@@ -1,0 +1,204 @@
+@use '../abstracts' as *;
+
+// ---------------------------------------------------------------------------
+// Chef's Special
+//
+// The card markup is generic on purpose: image, kicker, name, note, price.
+// Swap dishes for cars or watches in data/specials.json and nothing in this
+// file needs to change.
+// ---------------------------------------------------------------------------
+
+.specials__grid {
+  display: grid;
+  gap: $space-lg;
+
+  @include from($bp-md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include from($bp-lg) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: $space-xl;
+  }
+}
+
+// Stagger the middle column down a little on wide screens. A perfectly level
+// row of three is the single most template-looking thing a layout can do.
+//
+// Done with margin rather than a transform on purpose: the scroll-reveal
+// animation owns `transform` on these cards, and whichever rule won would
+// silently cancel the other.
+@include from($bp-lg) {
+  .specials__grid > :nth-child(even) {
+    margin-top: 3.25rem;
+  }
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: $ink-800;
+  border: 1px solid $line;
+  transition:
+    border-color $dur-med $ease-out,
+    transform $dur-med $ease-out;
+
+  &:hover,
+  &:focus-within {
+    border-color: rgba(199, 154, 70, 0.55);
+  }
+}
+
+.card__media {
+  position: relative;
+  overflow: hidden;
+  // locked ratio so the grid never reflows while images load
+  aspect-ratio: 4 / 5;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.01);
+    transition: transform $dur-slow $ease-out, filter $dur-slow $ease-out;
+    filter: saturate(0.92);
+  }
+}
+
+.card:hover .card__media img,
+.card:focus-within .card__media img {
+  transform: scale(1.07);
+  filter: saturate(1.05);
+}
+
+// Brass wash that fades in over the photo on hover
+.card__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8, 8, 10, 0.75), rgba(8, 8, 10, 0) 55%);
+  opacity: 0.9;
+  transition: opacity $dur-med $ease-out;
+}
+
+.card__badge {
+  position: absolute;
+  z-index: 2;
+  top: $space-sm;
+  left: $space-sm;
+  padding: 0.45em 0.9em;
+  background: rgba(8, 8, 10, 0.72);
+  border: 1px solid rgba(199, 154, 70, 0.5);
+  backdrop-filter: blur(6px);
+  font-size: $step--2;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $brass-light;
+}
+
+.card__price {
+  position: absolute;
+  z-index: 2;
+  right: $space-sm;
+  bottom: $space-sm;
+  display: inline-grid;
+  place-items: center;
+  width: 4.25rem;
+  height: 4.25rem;
+  border: 1px solid rgba(242, 237, 228, 0.35);
+  border-radius: 50%;
+  background: rgba(8, 8, 10, 0.55);
+  backdrop-filter: blur(6px);
+  font-family: $font-display;
+  font-size: $step-1;
+  color: $ivory;
+  transition:
+    background-color $dur-med $ease-out,
+    border-color $dur-med $ease-out,
+    color $dur-med $ease-out;
+
+  .card__currency {
+    font-size: 0.6em;
+    vertical-align: super;
+    color: $brass-light;
+    margin-right: 0.1em;
+  }
+}
+
+.card:hover .card__price,
+.card:focus-within .card__price {
+  background: $brass;
+  border-color: $brass;
+  color: $ink-900;
+
+  .card__currency {
+    color: $ink-900;
+  }
+}
+
+.card__body {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2xs;
+  padding: $space-md;
+  flex: 1;
+
+  @include from($bp-lg) {
+    padding: $space-lg $space-md $space-md;
+  }
+}
+
+.card__kicker {
+  @include eyebrow;
+  font-size: $step--2;
+}
+
+.card__title {
+  font-size: $step-2;
+
+  a::after {
+    // stretches the link over the whole card so the entire tile is clickable
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+}
+
+.card__note {
+  color: $muted;
+  font-size: $step--1;
+  line-height: 1.6;
+}
+
+// The brass rule that grows along the bottom edge on hover
+.card__rule {
+  margin-top: auto;
+  padding-top: $space-md;
+
+  &::after {
+    content: '';
+    display: block;
+    height: 1px;
+    background: $brass;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform $dur-slow $ease-out;
+  }
+}
+
+.card:hover .card__rule::after,
+.card:focus-within .card__rule::after {
+  transform: scaleX(1);
+}
+
+.specials__foot {
+  display: flex;
+  justify-content: center;
+  margin-top: $space-2xl;
+
+  @include from($bp-lg) {
+    // clears the offset middle card
+    margin-top: calc(#{$space-2xl} + 3.25rem);
+  }
+}

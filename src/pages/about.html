@@ -1,0 +1,130 @@
+<!-- page {
+  "id": "about",
+  "canonical": "about.html",
+  "title": "Our story | Maison Noir, Lisbon",
+  "description": "Eleven tables, an open kitchen and a menu written after the market. How Maison Noir has cooked in the old quarter of Lisbon since 2014.",
+  "hero": "hero-2"
+} -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{> head}}
+</head>
+<body>
+{{> header}}
+
+<main id="main">
+
+  <section class="page-head">
+    <div class="page-head__bg">
+      <picture>
+        <source type="image/webp" sizes="100vw" srcset="img/hero-2-760.webp 760w, img/hero-2-1200.webp 1200w, img/hero-2.webp 1920w">
+        <source type="image/jpeg" sizes="100vw" srcset="img/hero-2-760.jpg 760w, img/hero-2-1200.jpg 1200w, img/hero-2.jpg 1920w">
+        <img src="img/hero-2.jpg" alt="" width="1920" height="1080" fetchpriority="high" decoding="sync">
+      </picture>
+    </div>
+    <div class="page-head__inner">
+      <nav aria-label="Breadcrumb">
+        <ol class="crumbs">
+          <li><a href="index.html">Home</a></li>
+          <li aria-current="page">About</li>
+        </ol>
+      </nav>
+      <p class="eyebrow">{{about.eyebrow}}</p>
+      <h1 class="page-head__title">{{about.title}}</h1>
+      <p class="page-head__intro">{{about.lead}}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container container--wide">
+      <div class="story story--flip">
+        <div class="story__media" data-reveal="right">
+          <picture>
+            <source type="image/webp" sizes="(min-width: 1024px) 45vw, 92vw" srcset="img/about-room-600.webp 600w, img/about-room.webp 1200w">
+            <source type="image/jpeg" sizes="(min-width: 1024px) 45vw, 92vw" srcset="img/about-room-600.jpg 600w, img/about-room.jpg 1200w">
+            <img src="img/{{about.image}}.jpg" alt="{{about.imageAlt}}" width="1200" height="1500" loading="lazy" decoding="async">
+          </picture>
+        </div>
+
+        <div class="story__body">
+          <p class="eyebrow" data-reveal="fade">In the kitchen</p>
+          <h2 data-reveal>How we cook</h2>
+          <div class="prose" data-reveal data-reveal-delay="80">
+            {{#each about.body}}
+            <p>{{@value}}</p>
+            {{/each}}
+          </div>
+          <p class="story__quote" data-reveal data-reveal-delay="160">{{about.pullquote}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--surface">
+    <div class="container container--wide">
+      <div class="section__head section__head--center">
+        <div>
+          <p class="eyebrow eyebrow--center" data-reveal="fade">The room</p>
+          <h2 class="section__title" data-reveal>A few corners of it</h2>
+        </div>
+      </div>
+
+      <div class="gallery">
+        {{#each about.gallery}}
+        <figure class="gallery__item gallery__item--{{shape}}" data-reveal data-reveal-delay="{{@index}}00">
+          <picture>
+            <source srcset="img/{{image}}.webp" type="image/webp">
+            <img src="img/{{image}}.jpg" alt="{{alt}}" width="800" height="1000" loading="lazy" decoding="async">
+          </picture>
+        </figure>
+        {{/each}}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container container--wide">
+      <div class="section__head">
+        <div>
+          <p class="eyebrow" data-reveal="fade">The people</p>
+          <h2 class="section__title" data-reveal>Who is in tonight</h2>
+        </div>
+        <p class="section__aside" data-reveal data-reveal-delay="100">
+          Eleven of us run the room and the kitchen between them. These three
+          have been here since the beginning.
+        </p>
+      </div>
+
+      <div class="team">
+        {{#each about.team}}
+        <article class="team__member" data-reveal data-reveal-delay="{{@index}}00">
+          <p class="team__role">{{role}}</p>
+          <h3 class="team__name">{{name}}</h3>
+          <p class="team__note">{{note}}</p>
+        </article>
+        {{/each}}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container container--wide">
+      <div class="stats" data-reveal>
+        {{#each site.stats}}
+        <div class="stat">
+          <span class="stat__value">{{value}}</span>
+          <span class="stat__label">{{label}}</span>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </section>
+
+{{> cta-band}}
+
+</main>
+
+{{> footer}}
+</body>
+</html>

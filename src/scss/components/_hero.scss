@@ -1,0 +1,357 @@
+@use '../abstracts' as *;
+
+// ---------------------------------------------------------------------------
+// Hero slideshow
+//
+// Slides are stacked, only opacity and transform animate, so the whole thing
+// runs on the compositor. Without JavaScript the first slide simply stays on
+// screen and every control is hidden - the page still works.
+// ---------------------------------------------------------------------------
+
+.hero {
+  position: relative;
+  // 100svh avoids the mobile browser chrome jump that 100vh causes
+  min-height: 100svh;
+  display: grid;
+  isolation: isolate;
+  overflow: hidden;
+  background: $ink-900;
+}
+
+.hero__slides {
+  position: absolute;
+  inset: 0;
+}
+
+.hero__slide {
+  position: absolute;
+  inset: 0;
+  // the slide is its own grid so the copy can sit on the bottom edge
+  display: grid;
+  align-items: end;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity $dur-slow $ease-in-out,
+    visibility 0s linear $dur-slow;
+
+  &.is-active {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+    z-index: 1;
+  }
+}
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transform: scale(1.06);
+    transition: transform 8s linear;
+  }
+}
+
+// Slow Ken Burns push on the slide that is showing. Motion-safe only.
+@include motion-safe {
+  .hero__slide.is-active .hero__media img {
+    transform: scale(1);
+    transition: transform 9s linear;
+  }
+}
+
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  @include photo-scrim(0.9, 0.05);
+  @include photo-scrim-side(0.9, 0.05);
+  z-index: 2;
+}
+
+.hero__body {
+  position: relative;
+  z-index: 3;
+  @include container($container-wide);
+  // bottom padding leaves room for the controls, which sit under the copy on
+  // small screens and beside it from large up
+  padding-block: 7rem 11rem;
+
+  @include from($bp-lg) {
+    padding-block: 8rem $space-2xl;
+  }
+}
+
+.hero__copy {
+  max-width: 44rem;
+}
+
+.hero__eyebrow {
+  margin-bottom: $space-md;
+}
+
+.hero__title {
+  // Its own clamp rather than a scale step: this is the one piece of type on
+  // the site that has to fill a whole screen without ever pushing the buttons
+  // below the fold.
+  @include display(clamp(2.4rem, 1.1rem + 4.6vw, 4.5rem));
+  margin-bottom: $space-md;
+}
+
+.hero__text {
+  font-size: $step-1;
+  line-height: 1.5;
+  color: $ivory-dim;
+  max-width: 46ch;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-sm;
+  margin-top: $space-lg;
+}
+
+// Entrance animation -------------------------------------------------------
+// Children of the active slide rise into place, each one slightly after the
+// last. The delay is set per element below rather than with JS.
+
+.hero__copy > * {
+  opacity: 0;
+  transform: translateY(1.75rem);
+}
+
+.hero__slide.is-active .hero__copy > * {
+  animation: hero-rise $dur-slow $ease-out forwards;
+}
+
+.hero__slide.is-active .hero__copy > *:nth-child(1) {
+  animation-delay: 160ms;
+}
+.hero__slide.is-active .hero__copy > *:nth-child(2) {
+  animation-delay: 280ms;
+}
+.hero__slide.is-active .hero__copy > *:nth-child(3) {
+  animation-delay: 380ms;
+}
+.hero__slide.is-active .hero__copy > *:nth-child(4) {
+  animation-delay: 480ms;
+}
+
+@keyframes hero-rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Older browsers and reduced-motion users get the text with no animation at
+// all rather than invisible text - the failure mode has to be "plain", never
+// "blank".
+@include motion-reduce {
+  .hero__copy > * {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+  }
+
+  .hero__media img {
+    transform: none !important;
+    transition: none;
+  }
+}
+
+// Controls -----------------------------------------------------------------
+
+// Pinned to the hero rather than living inside a slide, so the controls never
+// fade in and out with the photograph behind them.
+.hero__controls {
+  display: none;
+  position: absolute;
+  z-index: 4;
+  left: $gutter;
+  right: $gutter;
+  bottom: $space-lg;
+
+  // only revealed once the slideshow module has initialised
+  .js & {
+    display: grid;
+    gap: $space-sm;
+    justify-items: start;
+  }
+
+  @include from($bp-lg) {
+    left: auto;
+    right: max(#{$gutter}, calc((100% - #{$container-wide}) / 2 + #{$gutter}));
+    bottom: $space-2xl;
+    justify-items: end;
+    text-align: right;
+    gap: $space-md;
+  }
+}
+
+.hero__count {
+  font-family: $font-display;
+  font-size: $step-2;
+  letter-spacing: 0.08em;
+  color: $ivory;
+
+  .hero__count-total {
+    color: $muted;
+    font-size: 0.6em;
+    vertical-align: super;
+  }
+}
+
+.hero__dots {
+  display: flex;
+  gap: $space-xs;
+}
+
+// A 2px rule, but inside a 24px-tall button. The visible mark is the design;
+// the box around it is what a thumb actually has to land on.
+.hero__dot {
+  position: relative;
+  width: 3rem;
+  height: 1.5rem;
+  background: none;
+  border: 0;
+  padding: 0;
+
+  // ::before is the track, ::after is the fill that tracks the autoplay timer
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(50% - 1px);
+    height: 2px;
+  }
+
+  &::before {
+    background: $line-strong;
+    transition: background-color $dur-fast $ease-out;
+  }
+
+  &::after {
+    background: $brass;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  &.is-active::after {
+    animation: hero-progress var(--hero-delay, 6000ms) linear forwards;
+  }
+
+  &.is-active.is-paused::after {
+    animation-play-state: paused;
+  }
+
+  &:hover::before {
+    background: $ivory-dim;
+  }
+}
+
+@keyframes hero-progress {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@include motion-reduce {
+  .hero__dot.is-active::after {
+    animation: none;
+    transform: scaleX(1);
+  }
+}
+
+.hero__arrows {
+  display: flex;
+  gap: $space-2xs;
+}
+
+.hero__arrow {
+  display: inline-grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid $line-strong;
+  color: $ivory;
+  transition:
+    background-color $dur-fast $ease-out,
+    border-color $dur-fast $ease-out,
+    color $dur-fast $ease-out;
+
+  &:hover,
+  &:focus-visible {
+    background: $brass;
+    border-color: $brass;
+    color: $ink-900;
+  }
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+// Scroll cue ---------------------------------------------------------------
+
+.hero__cue {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: $space-sm;
+  transform: translateX(-50%);
+  display: none;
+  align-items: center;
+  gap: $space-2xs;
+  font-size: $step--2;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: $muted;
+
+  @include from($bp-lg) {
+    display: inline-flex;
+    writing-mode: vertical-rl;
+    left: auto;
+    right: calc($gutter / 2);
+    bottom: 50%;
+    transform: translateY(50%);
+  }
+
+  &::after {
+    content: '';
+    width: 1px;
+    height: 3.5rem;
+    background: linear-gradient(to bottom, $brass, rgba(199, 154, 70, 0));
+
+    @include from($bp-lg) {
+      height: 4.5rem;
+    }
+  }
+}
+
+@include motion-safe {
+  .hero__cue::after {
+    animation: cue-pulse 2.4s $ease-in-out infinite;
+    transform-origin: top;
+  }
+}
+
+@keyframes cue-pulse {
+  0%,
+  100% {
+    transform: scaleY(0.4);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}

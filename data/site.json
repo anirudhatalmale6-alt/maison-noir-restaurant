@@ -1,0 +1,48 @@
+{
+  "brand": {
+    "name": "Maison Noir",
+    "nameShort": "Noir",
+    "tagline": "Modern European tasting menus",
+    "established": "Est. 2014",
+    "description": "A candlelit twenty-eight seat dining room serving a seasonal modern European tasting menu in the heart of the old quarter.",
+    "url": "https://example.com"
+  },
+  "contact": {
+    "addressLine1": "17 Rue des Lanternes",
+    "addressLine2": "Old Quarter, Lisbon 1100-062",
+    "phoneDisplay": "+351 21 045 9920",
+    "phoneHref": "+351210459920",
+    "mapsUrl": "https://www.openstreetmap.org/"
+  },
+  "hours": [
+    { "days": "Tuesday–Thursday", "time": "18:00–23:00" },
+    { "days": "Friday–Saturday", "time": "18:00–01:00" },
+    { "days": "Sunday", "time": "12:30–16:00 lunch only" },
+    { "days": "Monday", "time": "Closed" }
+  ],
+  "social": [
+    { "label": "Instagram", "url": "https://instagram.com" },
+    { "label": "Facebook", "url": "https://facebook.com" },
+    { "label": "TripAdvisor", "url": "https://tripadvisor.com" }
+  ],
+  "nav": [
+    { "label": "Home", "href": "index.html", "id": "home" },
+    { "label": "Menu", "href": "menu.html", "id": "menu" },
+    { "label": "About", "href": "about.html", "id": "about" },
+    { "label": "Contact", "href": "contact.html", "id": "contact" }
+  ],
+  "marquee": [
+    "Est. 2014",
+    "Seasonal tasting menu",
+    "Twenty-eight seats",
+    "Wine pairing by the glass",
+    "Open kitchen",
+    "Walk-ins at the bar"
+  ],
+  "stats": [
+    { "value": "28", "label": "Seats in the room" },
+    { "value": "9", "label": "Courses on the tasting menu" },
+    { "value": "140", "label": "Labels on the wine list" },
+    { "value": "11", "label": "Years in the old quarter" }
+  ]
+}

@@ -1,0 +1,60 @@
+@use '../abstracts' as *;
+
+// A slow horizontal ticker between the hero and the first section. The track
+// is duplicated in the markup and translated by exactly -50%, which is what
+// makes the loop seamless rather than visibly snapping back.
+
+.marquee {
+  overflow: hidden;
+  border-block: 1px solid $line;
+  background: $ink-800;
+  padding-block: $space-sm;
+  // tells the browser this element animates, without promoting it forever
+  contain: content;
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+}
+
+@include motion-safe {
+  .marquee__track {
+    animation: marquee 38s linear infinite;
+  }
+
+  .marquee:hover .marquee__track {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee__item {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  padding-inline: clamp(0.75rem, 2vw, 1.5rem);
+  font-size: $step--1;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: $ivory-dim;
+  white-space: nowrap;
+
+  // brass diamond separator
+  &::after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background: $brass;
+    transform: rotate(45deg);
+    flex: none;
+  }
+}

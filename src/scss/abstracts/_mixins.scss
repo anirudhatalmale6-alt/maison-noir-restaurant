@@ -1,0 +1,140 @@
+@use 'tokens' as *;
+
+// Media queries ------------------------------------------------------------
+// Mobile first throughout: the base rules describe the phone, every mixin
+// below adds to them.
+
+@mixin from($bp) {
+  @media (min-width: $bp) {
+    @content;
+  }
+}
+
+@mixin until($bp) {
+  @media (max-width: ($bp - 0.02px)) {
+    @content;
+  }
+}
+
+// Honour the operating-system "reduce motion" setting. Used anywhere an
+// animation would otherwise run on its own.
+@mixin motion-safe {
+  @media (prefers-reduced-motion: no-preference) {
+    @content;
+  }
+}
+
+@mixin motion-reduce {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+// Structure ----------------------------------------------------------------
+
+@mixin container($width: $container) {
+  width: 100%;
+  max-width: $width;
+  margin-inline: auto;
+  padding-inline: $gutter;
+}
+
+@mixin section-padding {
+  padding-block: $space-2xl;
+}
+
+// Typography ---------------------------------------------------------------
+
+// The small brass label that sits above almost every heading on the site.
+@mixin eyebrow {
+  font-family: $font-body;
+  font-size: $step--2;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: $brass;
+}
+
+@mixin display($size: $step-4) {
+  font-family: $font-display;
+  font-optical-sizing: auto;
+  font-size: $size;
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+// Accessibility ------------------------------------------------------------
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+// One consistent focus ring, drawn outside the element so it never shifts
+// layout. Applied through :focus-visible so mouse users never see it.
+@mixin focus-ring($offset: 3px) {
+  outline: 2px solid $brass-light;
+  outline-offset: $offset;
+  border-radius: $radius-sm;
+}
+
+// Effects ------------------------------------------------------------------
+
+// Scrims for text sitting over photography.
+//
+// `photo-scrim` is the base, and it is what a phone gets. Its stops are
+// proportional: a phone hero is only ever one viewport tall, and a
+// pixel-anchored ramp long enough to cover a desktop headline blacks out the
+// entire photograph on a 390px screen.
+//
+// `photo-scrim-side` adds the left-to-right wash from large up, where the
+// headline is left-aligned over the full width of the image. That layer is the
+// one doing the real contrast work: a pale plate in the middle of a photograph
+// otherwise drags the measured ratio under 4.5:1.
+//
+// Both are measured, not eyeballed - see tools/contrast.py.
+@mixin photo-scrim($from: 0.9, $to: 0.05) {
+  background: linear-gradient(
+    to top,
+    rgba(8, 8, 10, $from) 0,
+    rgba(8, 8, 10, $from * 0.9) 42%,
+    rgba(8, 8, 10, $from * 0.52) 82%,
+    rgba(8, 8, 10, $from * 0.34) 100%
+  );
+}
+
+// The sideways wash is a separate mixin and only ever applied from large up.
+// On a phone the copy spans the full width, so a left-to-right gradient covers
+// the entire screen and the photograph disappears behind it.
+@mixin photo-scrim-side($from: 0.9, $to: 0.05) {
+  @include from($bp-lg) {
+    background-image:
+      linear-gradient(
+        to right,
+        rgba(8, 8, 10, 0.88) 0,
+        rgba(8, 8, 10, 0.74) 38%,
+        rgba(8, 8, 10, 0.12) 78%,
+        rgba(8, 8, 10, 0.3) 100%
+      ),
+      linear-gradient(
+        to top,
+        rgba(8, 8, 10, $from) 0,
+        rgba(8, 8, 10, $from * 0.86) 300px,
+        rgba(8, 8, 10, $to) 680px
+      );
+  }
+}
+
+@mixin hairline($side: bottom, $color: $line) {
+  border-#{$side}: 1px solid $color;
+}

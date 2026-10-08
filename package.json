@@ -1,0 +1,20 @@
+{
+  "name": "maison-noir",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Premium responsive restaurant website. Semantic HTML5, SCSS, vanilla JS, JSON-driven content.",
+  "scripts": {
+    "build": "node tools/build.js",
+    "dev": "node tools/build.js --watch",
+    "serve": "npx --yes http-server dist -p 4173 -c-1",
+    "start": "npm run build && npm run serve"
+  },
+  "devDependencies": {
+    "sass": "^1.105.0"
+  },
+  "browserslist": [
+    "> 0.3%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

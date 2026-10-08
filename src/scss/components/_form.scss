@@ -1,0 +1,249 @@
+@use '../abstracts' as *;
+
+.form {
+  display: grid;
+  gap: $space-md;
+}
+
+.form__row {
+  display: grid;
+  gap: $space-md;
+
+  @include from($bp-md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.form__row--three {
+  @include from($bp-md) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.field {
+  display: grid;
+  gap: $space-3xs;
+}
+
+.field__label {
+  font-size: $step--2;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $muted;
+}
+
+.field__control {
+  width: 100%;
+  padding: 0.95em 1em;
+  background: $ink-800;
+  border: 1px solid $line;
+  color: $ivory;
+  font-size: $step-0;
+  transition:
+    border-color $dur-fast $ease-out,
+    background-color $dur-fast $ease-out;
+
+  &::placeholder {
+    color: rgba(139, 133, 123, 0.7);
+  }
+
+  &:hover {
+    border-color: $line-strong;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $brass;
+    background: $ink-700;
+  }
+
+  &:focus-visible {
+    @include focus-ring(1px);
+  }
+}
+
+select.field__control {
+  // native select arrows are unstyleable, so draw our own
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #{$brass} 50%),
+    linear-gradient(135deg, #{$brass} 50%, transparent 50%);
+  background-position: right 1.15em top 55%, right 0.8em top 55%;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 2.5em;
+
+  option {
+    background: $ink-800;
+    color: $ivory;
+  }
+}
+
+textarea.field__control {
+  min-height: 7.5rem;
+  resize: vertical;
+}
+
+.field__error {
+  display: none;
+  font-size: $step--1;
+  color: #e08a76;
+}
+
+.field.is-invalid {
+  .field__control {
+    border-color: #e08a76;
+  }
+
+  .field__error {
+    display: block;
+  }
+}
+
+// Honeypot: a real-looking field hidden from people but not from scripts.
+// Anything that fills it in is rejected silently on submit.
+.field--trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form__consent {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-2xs;
+  font-size: $step--1;
+  color: $muted;
+
+  input {
+    margin-top: 0.35em;
+    accent-color: $brass;
+    width: 1rem;
+    height: 1rem;
+    flex: none;
+  }
+}
+
+.form__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-md;
+  margin-top: $space-2xs;
+}
+
+.form__status {
+  font-size: $step--1;
+  color: $brass-light;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+// Confirmation panel swapped in once the form validates
+.form__success {
+  display: grid;
+  gap: $space-sm;
+  padding: $space-lg;
+  border: 1px solid rgba(199, 154, 70, 0.5);
+  background: $ink-800;
+  text-align: center;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.form__success-title {
+  @include display($step-2);
+}
+
+// Contact page side panels -------------------------------------------------
+
+.contact-grid {
+  display: grid;
+  gap: $space-2xl;
+
+  @include from($bp-lg) {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: $space-3xl;
+  }
+}
+
+.info-block {
+  display: grid;
+  gap: $space-3xs;
+  padding-block: $space-md;
+  border-bottom: 1px solid $line;
+
+  &:first-of-type {
+    padding-top: 0;
+  }
+}
+
+.info-block__label {
+  @include eyebrow;
+  font-size: $step--2;
+}
+
+.info-block__value {
+  font-family: $font-display;
+  font-size: $step-1;
+  line-height: 1.35;
+}
+
+.hours {
+  display: grid;
+  gap: $space-2xs;
+}
+
+.hours__row {
+  display: flex;
+  justify-content: space-between;
+  gap: $space-md;
+  padding-bottom: $space-2xs;
+  border-bottom: 1px dotted $line;
+  font-size: $step--1;
+
+  span:first-child {
+    color: $ivory-dim;
+  }
+
+  span:last-child {
+    color: $muted;
+    white-space: nowrap;
+  }
+}
+
+.notes {
+  display: grid;
+  gap: $space-md;
+
+  @include from($bp-md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $space-lg;
+  }
+}
+
+.note {
+  display: grid;
+  gap: $space-3xs;
+  padding-top: $space-sm;
+  border-top: 1px solid rgba(199, 154, 70, 0.4);
+}
+
+.note__title {
+  font-size: $step--1;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $ivory;
+}
+
+.note__text {
+  color: $muted;
+  font-size: $step--1;
+  line-height: 1.6;
+}
