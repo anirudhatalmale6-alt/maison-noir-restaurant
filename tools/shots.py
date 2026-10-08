@@ -5,7 +5,7 @@ from pathlib import Path
 
 from playwright.sync_api import sync_playwright
 
-BASE = "http://127.0.0.1:4173"
+BASE = __import__("os").environ.get("SITE_BASE", "http://127.0.0.1:4173")
 OUT = Path(sys.argv[1] if len(sys.argv) > 1 else "/tmp/shots")
 OUT.mkdir(parents=True, exist_ok=True)
 

@@ -15,6 +15,17 @@
   @include from($bp-lg) {
     .story__media {
       order: 2;
+
+      // mirror the offset frame so it still falls away from the text, and
+      // the badge with it
+      &::before {
+        inset: $space-md (-$space-md) (-$space-md) $space-md;
+      }
+    }
+
+    .story__badge {
+      right: auto;
+      left: (-$space-sm);
     }
   }
 }
