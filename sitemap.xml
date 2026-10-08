@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://example.com/about.html</loc><priority>0.7</priority></url>
-  <url><loc>https://example.com/contact.html</loc><priority>0.7</priority></url>
-  <url><loc>https://example.com/</loc><priority>1.0</priority></url>
-  <url><loc>https://example.com/menu.html</loc><priority>0.7</priority></url>
+  <url><loc>https://anirudhatalmale6-alt.github.io/maison-noir-restaurant/about.html</loc><priority>0.7</priority></url>
+  <url><loc>https://anirudhatalmale6-alt.github.io/maison-noir-restaurant/contact.html</loc><priority>0.7</priority></url>
+  <url><loc>https://anirudhatalmale6-alt.github.io/maison-noir-restaurant/</loc><priority>1.0</priority></url>
+  <url><loc>https://anirudhatalmale6-alt.github.io/maison-noir-restaurant/menu.html</loc><priority>0.7</priority></url>
 </urlset>
